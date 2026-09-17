@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "builderlab-spec-ingest-verify"
+version = "0.1.0"
+description = "BuilderLab spec-sheet verification tool scaffold"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.7,<3",
+    "pydantic-settings>=2.2,<3",
+    "google-genai>=1.0,<2",
+    "pymupdf>=1.24,<2",
+    "pytesseract>=0.3.10,<1",
+    "Pillow>=10,<12",
+    "streamlit>=1.45,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<9",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
