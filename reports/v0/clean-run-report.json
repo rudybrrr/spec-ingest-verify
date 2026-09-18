@@ -1,0 +1,1208 @@
+{
+  "selection": {
+    "count": 100,
+    "filenames": [
+      "00118ES1B56C-S.pdf",
+      "00118ET3EBM56-S.pdf",
+      "00158ET3EBM145TC-S.pdf",
+      "00158ET3EBM56CFL-S.pdf",
+      "00218ET3EBM56CFL-S.pdf",
+      "00518ET3EBM184TC-S.pdf",
+      "00518ET3EBMR184TC-S.pdf",
+      "00551106.pdf",
+      "00571102.pdf",
+      "00591104.pdf",
+      "00601102.pdf",
+      "00681101.pdf",
+      "00701101.pdf",
+      "00718ET3EBM213TC-S.pdf",
+      "00741200.pdf",
+      "00751200.pdf",
+      "01.02.120.pdf",
+      "01018ET3EBM215TC-S.pdf",
+      "01018ET3EBMR215TC-S.pdf",
+      "01518ET3EBM254T-S.pdf",
+      "01651.0-00.pdf",
+      "01662.0-00.pdf",
+      "018600-02.pdf",
+      "018600-04.pdf",
+      "018610-00.pdf",
+      "018610-02.pdf",
+      "018700-30.pdf",
+      "018701-30.pdf",
+      "018702-30.pdf",
+      "018703-30.pdf",
+      "018709-30.pdf",
+      "018710-30.pdf",
+      "018712-30.pdf",
+      "018719-30.pdf",
+      "018720-30.pdf",
+      "018722-30.pdf",
+      "018729-30.pdf",
+      "018730-30.pdf",
+      "018740-30.pdf",
+      "018740-31.pdf",
+      "018749-30.pdf",
+      "018749-31.pdf",
+      "018800-00.pdf",
+      "018800-40.pdf",
+      "018802-00.pdf",
+      "018803-00.pdf",
+      "02.02.120.pdf",
+      "02018ET3EBM256T-S.pdf",
+      "020310-00.pdf",
+      "020319-00.pdf",
+      "020320-00.pdf",
+      "020349-00.pdf",
+      "03.02.120.pdf",
+      "030599-00.pdf",
+      "030921-16.pdf",
+      "030921-17.pdf",
+      "030973-16.pdf",
+      "04A-B01.pdf",
+      "04J-AP-T01.pdf",
+      "04J-AS-T01.pdf",
+      "05.02.120.pdf",
+      "05.02.80A-05.01.71A.pdf",
+      "05.02.81A-05.01.72A.pdf",
+      "06.02.120.pdf",
+      "06510.0-00.pdf",
+      "06513.0-00.pdf",
+      "06514.0-00.pdf",
+      "06520.0-00.pdf",
+      "06524.0-00.pdf",
+      "07.02.120.pdf",
+      "08.02.120.pdf",
+      "09.02.120.pdf",
+      "1-1414631-0.pdf",
+      "1-1437713-1.pdf",
+      "1-1437713-2.pdf",
+      "1-2186527-1.pdf",
+      "1-2186528-1.pdf",
+      "1-2186576-1.pdf",
+      "1-2186577-1.pdf",
+      "1-350777-1.pdf",
+      "1-480700-0.pdf",
+      "1-794616-2.pdf",
+      "10-AT3.pdf",
+      "10-E1126TA035M7-L859F73Z.pdf",
+      "10-EZ126PA050M702-L850F76T.pdf",
+      "10-MXL.pdf",
+      "10-T5.pdf",
+      "10.02.120.pdf",
+      "100-AT10.pdf",
+      "100-AT5.pdf",
+      "100-ATN10K6.pdf",
+      "100-T10.pdf",
+      "100-T20.pdf",
+      "100818033524001.pdf",
+      "100_AT3_900_SFX.pdf",
+      "100_T5_990_BFX.pdf",
+      "101.6-XL.pdf",
+      "101DOR010-S10.pdf",
+      "101DOR016-S10.pdf",
+      "101DOR025-S10.pdf"
+    ],
+    "schema": {
+      "name": "spec_sheet",
+      "fields": [
+        {
+          "name": "part_number",
+          "description": "Unique manufacturer/orderable part identifier for the specific product represented by the document. Do not use product-family names, document titles, drawing labels, stock labels, or arbitrary variant identifiers. Return null for multi-product/portfolio documents or when no single unique part number is clearly identifiable.",
+          "required": true
+        },
+        {
+          "name": "description",
+          "description": "Short product description",
+          "required": false
+        }
+      ]
+    }
+  },
+  "counts": {
+    "verified": {
+      "count": 75,
+      "percentage": 75.0
+    },
+    "human_review": {
+      "count": 21,
+      "percentage": 21.0
+    },
+    "failed": {
+      "count": 4,
+      "percentage": 4.0
+    }
+  },
+  "not_started_count": 0,
+  "escalation_fields": [
+    [
+      "part_number",
+      21
+    ],
+    [
+      "description",
+      15
+    ]
+  ],
+  "escalation_reasons": [
+    [
+      "uncertain",
+      21
+    ],
+    [
+      "mismatch",
+      15
+    ]
+  ],
+  "failure_taxonomy": {
+    "vision": 3,
+    "api": 1
+  },
+  "processing_time_ms": {
+    "average": 27896.99,
+    "median": 8530.51,
+    "total": 2789699.47
+  },
+  "token_usage_by_stage": {
+    "ocr": {
+      "prompt": 867684,
+      "candidates": 28060,
+      "total": 895744
+    },
+    "vision": {
+      "prompt": 751724,
+      "candidates": 25946,
+      "total": 777992,
+      "thoughts": 322
+    },
+    "checker": {
+      "prompt": 8839,
+      "candidates": 1868,
+      "total": 10707
+    },
+    "upstream_sku": {},
+    "native_text": {
+      "prompt": 832869,
+      "candidates": 9028,
+      "total": 841897
+    }
+  },
+  "cost_usd_by_stage": {
+    "ocr": 0.0979924,
+    "vision": 0.0855508,
+    "checker": 0.0016311,
+    "native_text": 0.0868981
+  },
+  "latency_ms_by_stage": {
+    "ocr": 182972.04,
+    "vision": 502498.94,
+    "checker": 40289.91,
+    "upstream_sku": 1860.11,
+    "native_text": 75990.07
+  },
+  "total_api_cost_usd": 0.2720724,
+  "average_api_cost_usd": 0.00272072,
+  "documents": [
+    {
+      "filename": "00118ES1B56C-S.pdf",
+      "run_id": "00118es1b56c-s",
+      "status": "verified",
+      "latency_ms": 8279.36,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "00118ET3EBM56-S.pdf",
+      "run_id": "00118et3ebm56-s",
+      "status": "verified",
+      "latency_ms": 9373.54,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "00158ET3EBM145TC-S.pdf",
+      "run_id": "00158et3ebm145tc-s",
+      "status": "verified",
+      "latency_ms": 7698.01,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "00158ET3EBM56CFL-S.pdf",
+      "run_id": "00158et3ebm56cfl-s",
+      "status": "verified",
+      "latency_ms": 6098.07,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "00218ET3EBM56CFL-S.pdf",
+      "run_id": "00218et3ebm56cfl-s",
+      "status": "verified",
+      "latency_ms": 5931.64,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "00518ET3EBM184TC-S.pdf",
+      "run_id": "00518et3ebm184tc-s",
+      "status": "verified",
+      "latency_ms": 5394.0,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "00518ET3EBMR184TC-S.pdf",
+      "run_id": "00518et3ebmr184tc-s",
+      "status": "verified",
+      "latency_ms": 7519.39,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "00551106.pdf",
+      "run_id": "00551106",
+      "status": "verified",
+      "latency_ms": 121226.19,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "00571102.pdf",
+      "run_id": "00571102",
+      "status": "verified",
+      "latency_ms": 121601.08,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "00591104.pdf",
+      "run_id": "00591104",
+      "status": "verified",
+      "latency_ms": 131220.1,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "00601102.pdf",
+      "run_id": "00601102",
+      "status": "failed",
+      "latency_ms": 113706.15,
+      "external_provenance_status": null
+    },
+    {
+      "filename": "00681101.pdf",
+      "run_id": "00681101",
+      "status": "verified",
+      "latency_ms": 138994.27,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "00701101.pdf",
+      "run_id": "00701101",
+      "status": "verified",
+      "latency_ms": 131439.01,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "00718ET3EBM213TC-S.pdf",
+      "run_id": "00718et3ebm213tc-s",
+      "status": "verified",
+      "latency_ms": 8299.53,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "00741200.pdf",
+      "run_id": "00741200",
+      "status": "verified",
+      "latency_ms": 115981.06,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "00751200.pdf",
+      "run_id": "00751200",
+      "status": "verified",
+      "latency_ms": 114908.74,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "01.02.120.pdf",
+      "run_id": "01-02-120",
+      "status": "human_review",
+      "latency_ms": 58686.83,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "01018ET3EBM215TC-S.pdf",
+      "run_id": "01018et3ebm215tc-s",
+      "status": "verified",
+      "latency_ms": 7544.59,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "01018ET3EBMR215TC-S.pdf",
+      "run_id": "01018et3ebmr215tc-s",
+      "status": "verified",
+      "latency_ms": 7540.54,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "01518ET3EBM254T-S.pdf",
+      "run_id": "01518et3ebm254t-s",
+      "status": "verified",
+      "latency_ms": 8455.29,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "01651.0-00.pdf",
+      "run_id": "01651-0-00",
+      "status": "verified",
+      "latency_ms": 7275.96,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "01662.0-00.pdf",
+      "run_id": "01662-0-00",
+      "status": "verified",
+      "latency_ms": 6847.2,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018600-02.pdf",
+      "run_id": "018600-02",
+      "status": "verified",
+      "latency_ms": 5405.91,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018600-04.pdf",
+      "run_id": "018600-04",
+      "status": "verified",
+      "latency_ms": 6524.72,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018610-00.pdf",
+      "run_id": "018610-00",
+      "status": "verified",
+      "latency_ms": 5440.91,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018610-02.pdf",
+      "run_id": "018610-02",
+      "status": "verified",
+      "latency_ms": 5966.46,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018700-30.pdf",
+      "run_id": "018700-30",
+      "status": "verified",
+      "latency_ms": 5832.9,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018701-30.pdf",
+      "run_id": "018701-30",
+      "status": "verified",
+      "latency_ms": 10522.31,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018702-30.pdf",
+      "run_id": "018702-30",
+      "status": "verified",
+      "latency_ms": 6108.22,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018703-30.pdf",
+      "run_id": "018703-30",
+      "status": "verified",
+      "latency_ms": 7000.32,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018709-30.pdf",
+      "run_id": "018709-30",
+      "status": "verified",
+      "latency_ms": 6367.72,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018710-30.pdf",
+      "run_id": "018710-30",
+      "status": "verified",
+      "latency_ms": 6148.74,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018712-30.pdf",
+      "run_id": "018712-30",
+      "status": "verified",
+      "latency_ms": 6233.55,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018719-30.pdf",
+      "run_id": "018719-30",
+      "status": "verified",
+      "latency_ms": 7197.91,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018720-30.pdf",
+      "run_id": "018720-30",
+      "status": "verified",
+      "latency_ms": 5580.23,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018722-30.pdf",
+      "run_id": "018722-30",
+      "status": "verified",
+      "latency_ms": 7313.12,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018729-30.pdf",
+      "run_id": "018729-30",
+      "status": "verified",
+      "latency_ms": 6928.7,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018730-30.pdf",
+      "run_id": "018730-30",
+      "status": "verified",
+      "latency_ms": 7167.99,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018740-30.pdf",
+      "run_id": "018740-30",
+      "status": "verified",
+      "latency_ms": 7324.23,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018740-31.pdf",
+      "run_id": "018740-31",
+      "status": "verified",
+      "latency_ms": 7442.02,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018749-30.pdf",
+      "run_id": "018749-30",
+      "status": "verified",
+      "latency_ms": 8431.94,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018749-31.pdf",
+      "run_id": "018749-31",
+      "status": "verified",
+      "latency_ms": 6900.2,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018800-00.pdf",
+      "run_id": "018800-00",
+      "status": "verified",
+      "latency_ms": 9423.58,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018800-40.pdf",
+      "run_id": "018800-40",
+      "status": "verified",
+      "latency_ms": 6232.87,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018802-00.pdf",
+      "run_id": "018802-00",
+      "status": "verified",
+      "latency_ms": 5589.1,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "018803-00.pdf",
+      "run_id": "018803-00",
+      "status": "verified",
+      "latency_ms": 5402.17,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "02.02.120.pdf",
+      "run_id": "02-02-120",
+      "status": "human_review",
+      "latency_ms": 53255.23,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "02018ET3EBM256T-S.pdf",
+      "run_id": "02018et3ebm256t-s",
+      "status": "verified",
+      "latency_ms": 11597.68,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "020310-00.pdf",
+      "run_id": "020310-00",
+      "status": "verified",
+      "latency_ms": 5512.7,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "020319-00.pdf",
+      "run_id": "020319-00",
+      "status": "verified",
+      "latency_ms": 4666.66,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "020320-00.pdf",
+      "run_id": "020320-00",
+      "status": "verified",
+      "latency_ms": 6579.29,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "020349-00.pdf",
+      "run_id": "020349-00",
+      "status": "verified",
+      "latency_ms": 6467.49,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "03.02.120.pdf",
+      "run_id": "03-02-120",
+      "status": "human_review",
+      "latency_ms": 51364.39,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "030599-00.pdf",
+      "run_id": "030599-00",
+      "status": "verified",
+      "latency_ms": 7090.75,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "030921-16.pdf",
+      "run_id": "030921-16",
+      "status": "verified",
+      "latency_ms": 6792.7,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "030921-17.pdf",
+      "run_id": "030921-17",
+      "status": "verified",
+      "latency_ms": 7839.54,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "030973-16.pdf",
+      "run_id": "030973-16",
+      "status": "verified",
+      "latency_ms": 24669.04,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "04A-B01.pdf",
+      "run_id": "04a-b01",
+      "status": "human_review",
+      "latency_ms": 9301.77,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "04J-AP-T01.pdf",
+      "run_id": "04j-ap-t01",
+      "status": "verified",
+      "latency_ms": 10630.71,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "04J-AS-T01.pdf",
+      "run_id": "04j-as-t01",
+      "status": "verified",
+      "latency_ms": 9736.14,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "05.02.120.pdf",
+      "run_id": "05-02-120",
+      "status": "human_review",
+      "latency_ms": 52767.64,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "05.02.80A-05.01.71A.pdf",
+      "run_id": "05-02-80a-05-01-71a",
+      "status": "human_review",
+      "latency_ms": 9547.09,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "05.02.81A-05.01.72A.pdf",
+      "run_id": "05-02-81a-05-01-72a",
+      "status": "human_review",
+      "latency_ms": 11830.3,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "06.02.120.pdf",
+      "run_id": "06-02-120",
+      "status": "human_review",
+      "latency_ms": 51214.65,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "06510.0-00.pdf",
+      "run_id": "06510-0-00",
+      "status": "verified",
+      "latency_ms": 8605.72,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "06513.0-00.pdf",
+      "run_id": "06513-0-00",
+      "status": "verified",
+      "latency_ms": 7710.9,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "06514.0-00.pdf",
+      "run_id": "06514-0-00",
+      "status": "verified",
+      "latency_ms": 10574.41,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "06520.0-00.pdf",
+      "run_id": "06520-0-00",
+      "status": "verified",
+      "latency_ms": 8273.14,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "06524.0-00.pdf",
+      "run_id": "06524-0-00",
+      "status": "verified",
+      "latency_ms": 7856.68,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "07.02.120.pdf",
+      "run_id": "07-02-120",
+      "status": "human_review",
+      "latency_ms": 55022.17,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "08.02.120.pdf",
+      "run_id": "08-02-120",
+      "status": "human_review",
+      "latency_ms": 53984.66,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "09.02.120.pdf",
+      "run_id": "09-02-120",
+      "status": "human_review",
+      "latency_ms": 57593.87,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "1-1414631-0.pdf",
+      "run_id": "1-1414631-0",
+      "status": "verified",
+      "latency_ms": 8878.9,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "1-1437713-1.pdf",
+      "run_id": "1-1437713-1",
+      "status": "verified",
+      "latency_ms": 5295.03,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "1-1437713-2.pdf",
+      "run_id": "1-1437713-2",
+      "status": "verified",
+      "latency_ms": 5980.09,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "1-2186527-1.pdf",
+      "run_id": "1-2186527-1",
+      "status": "verified",
+      "latency_ms": 14284.88,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "1-2186528-1.pdf",
+      "run_id": "1-2186528-1",
+      "status": "verified",
+      "latency_ms": 13038.7,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "1-2186576-1.pdf",
+      "run_id": "1-2186576-1",
+      "status": "verified",
+      "latency_ms": 9337.39,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "1-2186577-1.pdf",
+      "run_id": "1-2186577-1",
+      "status": "verified",
+      "latency_ms": 9078.57,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "1-350777-1.pdf",
+      "run_id": "1-350777-1",
+      "status": "verified",
+      "latency_ms": 27409.61,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "1-480700-0.pdf",
+      "run_id": "1-480700-0",
+      "status": "verified",
+      "latency_ms": 17986.26,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "1-794616-2.pdf",
+      "run_id": "1-794616-2",
+      "status": "failed",
+      "latency_ms": 11623.5,
+      "external_provenance_status": null
+    },
+    {
+      "filename": "10-AT3.pdf",
+      "run_id": "10-at3",
+      "status": "failed",
+      "latency_ms": 5410.37,
+      "external_provenance_status": null
+    },
+    {
+      "filename": "10-E1126TA035M7-L859F73Z.pdf",
+      "run_id": "10-e1126ta035m7-l859f73z",
+      "status": "verified",
+      "latency_ms": 30455.64,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "10-EZ126PA050M702-L850F76T.pdf",
+      "run_id": "10-ez126pa050m702-l850f76t",
+      "status": "verified",
+      "latency_ms": 26834.9,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "10-MXL.pdf",
+      "run_id": "10-mxl",
+      "status": "human_review",
+      "latency_ms": 7677.89,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "10-T5.pdf",
+      "run_id": "10-t5",
+      "status": "human_review",
+      "latency_ms": 15072.44,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "10.02.120.pdf",
+      "run_id": "10-02-120",
+      "status": "human_review",
+      "latency_ms": 56417.57,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "100-AT10.pdf",
+      "run_id": "100-at10",
+      "status": "human_review",
+      "latency_ms": 10073.93,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "100-AT5.pdf",
+      "run_id": "100-at5",
+      "status": "human_review",
+      "latency_ms": 9470.71,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "100-ATN10K6.pdf",
+      "run_id": "100-atn10k6",
+      "status": "failed",
+      "latency_ms": 3185.62,
+      "external_provenance_status": null
+    },
+    {
+      "filename": "100-T10.pdf",
+      "run_id": "100-t10",
+      "status": "human_review",
+      "latency_ms": 11302.24,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "100-T20.pdf",
+      "run_id": "100-t20",
+      "status": "human_review",
+      "latency_ms": 8926.84,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "100818033524001.pdf",
+      "run_id": "100818033524001",
+      "status": "verified",
+      "latency_ms": 6311.93,
+      "external_provenance_status": "accepted"
+    },
+    {
+      "filename": "100_AT3_900_SFX.pdf",
+      "run_id": "100-at3-900-sfx",
+      "status": "human_review",
+      "latency_ms": 290377.44,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "100_T5_990_BFX.pdf",
+      "run_id": "100-t5-990-bfx",
+      "status": "human_review",
+      "latency_ms": 287302.68,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "101.6-XL.pdf",
+      "run_id": "101-6-xl",
+      "status": "human_review",
+      "latency_ms": 9503.0,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "101DOR010-S10.pdf",
+      "run_id": "101dor010-s10",
+      "status": "verified",
+      "latency_ms": 10705.35,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "101DOR016-S10.pdf",
+      "run_id": "101dor016-s10",
+      "status": "verified",
+      "latency_ms": 10415.99,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "101DOR025-S10.pdf",
+      "run_id": "101dor025-s10",
+      "status": "verified",
+      "latency_ms": 10350.31,
+      "external_provenance_status": "not_found"
+    }
+  ],
+  "external_provenance": {
+    "status_counts": {
+      "not_found": 81,
+      "accepted": 15
+    },
+    "accepted_exact_hash_match_count": 15,
+    "rescued_count": 10,
+    "rescued_documents": [
+      "00551106.pdf",
+      "00571102.pdf",
+      "00591104.pdf",
+      "00681101.pdf",
+      "00701101.pdf",
+      "00741200.pdf",
+      "00751200.pdf",
+      "04J-AP-T01.pdf",
+      "04J-AS-T01.pdf",
+      "1-350777-1.pdf"
+    ]
+  },
+  "resumability": {
+    "restart_completed_count": 96,
+    "restart_completed_unchanged_count": 96,
+    "result": "passed"
+  },
+  "baseline_comparison": {
+    "baseline_root": ".runs\\evaluation-100-spec-sheet-schema-comparison",
+    "counts": {
+      "verified": 53,
+      "human_review": 47,
+      "failed": 0
+    },
+    "count_delta": {
+      "verified": 22,
+      "human_review": -26,
+      "failed": 4
+    },
+    "total_api_cost_usd": 0.1904486,
+    "api_cost_delta_usd": 0.0816238,
+    "average_latency_ms": 24360.23,
+    "average_latency_delta_ms": 3536.76,
+    "verification_rate_change_percentage_points": 22.0,
+    "rescued_documents": [
+      "101DOR010-S10.pdf",
+      "101DOR016-S10.pdf",
+      "101DOR025-S10.pdf"
+    ],
+    "regressions": [],
+    "native_attributable_regressions": []
+  },
+  "eager_native_comparison": {
+    "eager_native_root": ".runs\\evaluation-100-spec-sheet-native-integrated-authorized",
+    "counts": {
+      "verified": 54,
+      "human_review": 46,
+      "failed": 0
+    },
+    "count_delta": {
+      "verified": 21,
+      "human_review": -25,
+      "failed": 4
+    },
+    "total_api_cost_usd": 0.3051829,
+    "api_cost_delta_usd": -0.0331105,
+    "average_latency_ms": 30195.78,
+    "average_latency_delta_ms": -2298.79
+  },
+  "native_fallback": {
+    "usable_definition": {
+      "min_words": 10,
+      "min_chars": 50
+    },
+    "status_counts": {
+      "available": 96,
+      "unavailable": 4
+    },
+    "structured_extraction_status_counts": {
+      "not_attempted": 63,
+      "complete": 36,
+      "failed": 1
+    },
+    "usable_count": 96,
+    "invoked_count": 37,
+    "invoked_documents": [
+      "00551106.pdf",
+      "00571102.pdf",
+      "00591104.pdf",
+      "00681101.pdf",
+      "00701101.pdf",
+      "00741200.pdf",
+      "00751200.pdf",
+      "01.02.120.pdf",
+      "02.02.120.pdf",
+      "03.02.120.pdf",
+      "04A-B01.pdf",
+      "04J-AP-T01.pdf",
+      "04J-AS-T01.pdf",
+      "05.02.120.pdf",
+      "05.02.80A-05.01.71A.pdf",
+      "05.02.81A-05.01.72A.pdf",
+      "06.02.120.pdf",
+      "07.02.120.pdf",
+      "08.02.120.pdf",
+      "09.02.120.pdf",
+      "1-2186527-1.pdf",
+      "1-2186528-1.pdf",
+      "1-2186576-1.pdf",
+      "1-2186577-1.pdf",
+      "10-MXL.pdf",
+      "10-T5.pdf",
+      "10.02.120.pdf",
+      "100-AT10.pdf",
+      "100-AT5.pdf",
+      "100-T10.pdf",
+      "100-T20.pdf",
+      "100_AT3_900_SFX.pdf",
+      "100_T5_990_BFX.pdf",
+      "101.6-XL.pdf",
+      "101DOR010-S10.pdf",
+      "101DOR016-S10.pdf",
+      "101DOR025-S10.pdf"
+    ],
+    "rescue_count": 3,
+    "rescued_documents": [
+      "101DOR010-S10.pdf",
+      "101DOR016-S10.pdf",
+      "101DOR025-S10.pdf"
+    ],
+    "structured_failure_documents": [
+      "00701101.pdf"
+    ]
+  },
+  "upstream_sku_claim_verification": {
+    "metadata_source": "input/index.csv",
+    "contract_coverage": 100,
+    "invocation_count": 96,
+    "invoked_documents": [
+      "00118ES1B56C-S.pdf",
+      "00118ET3EBM56-S.pdf",
+      "00158ET3EBM145TC-S.pdf",
+      "00158ET3EBM56CFL-S.pdf",
+      "00218ET3EBM56CFL-S.pdf",
+      "00518ET3EBM184TC-S.pdf",
+      "00518ET3EBMR184TC-S.pdf",
+      "00551106.pdf",
+      "00571102.pdf",
+      "00591104.pdf",
+      "00681101.pdf",
+      "00701101.pdf",
+      "00718ET3EBM213TC-S.pdf",
+      "00741200.pdf",
+      "00751200.pdf",
+      "01.02.120.pdf",
+      "01018ET3EBM215TC-S.pdf",
+      "01018ET3EBMR215TC-S.pdf",
+      "01518ET3EBM254T-S.pdf",
+      "01651.0-00.pdf",
+      "01662.0-00.pdf",
+      "018600-02.pdf",
+      "018600-04.pdf",
+      "018610-00.pdf",
+      "018610-02.pdf",
+      "018700-30.pdf",
+      "018701-30.pdf",
+      "018702-30.pdf",
+      "018703-30.pdf",
+      "018709-30.pdf",
+      "018710-30.pdf",
+      "018712-30.pdf",
+      "018719-30.pdf",
+      "018720-30.pdf",
+      "018722-30.pdf",
+      "018729-30.pdf",
+      "018730-30.pdf",
+      "018740-30.pdf",
+      "018740-31.pdf",
+      "018749-30.pdf",
+      "018749-31.pdf",
+      "018800-00.pdf",
+      "018800-40.pdf",
+      "018802-00.pdf",
+      "018803-00.pdf",
+      "02.02.120.pdf",
+      "02018ET3EBM256T-S.pdf",
+      "020310-00.pdf",
+      "020319-00.pdf",
+      "020320-00.pdf",
+      "020349-00.pdf",
+      "03.02.120.pdf",
+      "030599-00.pdf",
+      "030921-16.pdf",
+      "030921-17.pdf",
+      "030973-16.pdf",
+      "04A-B01.pdf",
+      "04J-AP-T01.pdf",
+      "04J-AS-T01.pdf",
+      "05.02.120.pdf",
+      "05.02.80A-05.01.71A.pdf",
+      "05.02.81A-05.01.72A.pdf",
+      "06.02.120.pdf",
+      "06510.0-00.pdf",
+      "06513.0-00.pdf",
+      "06514.0-00.pdf",
+      "06520.0-00.pdf",
+      "06524.0-00.pdf",
+      "07.02.120.pdf",
+      "08.02.120.pdf",
+      "09.02.120.pdf",
+      "1-1414631-0.pdf",
+      "1-1437713-1.pdf",
+      "1-1437713-2.pdf",
+      "1-2186527-1.pdf",
+      "1-2186528-1.pdf",
+      "1-2186576-1.pdf",
+      "1-2186577-1.pdf",
+      "1-350777-1.pdf",
+      "1-480700-0.pdf",
+      "10-E1126TA035M7-L859F73Z.pdf",
+      "10-EZ126PA050M702-L850F76T.pdf",
+      "10-MXL.pdf",
+      "10-T5.pdf",
+      "10.02.120.pdf",
+      "100-AT10.pdf",
+      "100-AT5.pdf",
+      "100-T10.pdf",
+      "100-T20.pdf",
+      "100818033524001.pdf",
+      "100_AT3_900_SFX.pdf",
+      "100_T5_990_BFX.pdf",
+      "101.6-XL.pdf",
+      "101DOR010-S10.pdf",
+      "101DOR016-S10.pdf",
+      "101DOR025-S10.pdf"
+    ],
+    "supported_count": 64,
+    "rescued_count": 11,
+    "rescued_documents": [
+      "06513.0-00.pdf",
+      "06524.0-00.pdf",
+      "1-2186527-1.pdf",
+      "1-2186528-1.pdf",
+      "1-2186576-1.pdf",
+      "1-2186577-1.pdf",
+      "1-480700-0.pdf",
+      "10-E1126TA035M7-L859F73Z.pdf",
+      "101DOR010-S10.pdf",
+      "101DOR016-S10.pdf",
+      "101DOR025-S10.pdf"
+    ],
+    "namespace_cases": [
+      "100818033524001.pdf"
+    ],
+    "filename_used_as_evidence": false,
+    "additional_documents_rescued": 11
+  },
+  "cost_latency_impact": {
+    "final_api_cost_usd": 0.2720724,
+    "final_processing_time_ms": {
+      "average": 27896.99,
+      "median": 8530.51,
+      "total": 2789699.47
+    },
+    "native_text_stage_cost_usd": 0.0868981,
+    "native_text_stage_latency_ms": 75990.07,
+    "api_cost_per_document_usd": 0.00272072,
+    "baseline": {
+      "counts": {
+        "verified": 53,
+        "human_review": 47,
+        "failed": 0
+      },
+      "count_delta": {
+        "verified": 22,
+        "human_review": -26,
+        "failed": 4
+      },
+      "total_api_cost_usd": 0.1904486,
+      "api_cost_delta_usd": 0.0816238,
+      "average_latency_ms": 24360.23,
+      "average_latency_delta_ms": 3536.76
+    },
+    "eager_native": {
+      "counts": {
+        "verified": 54,
+        "human_review": 46,
+        "failed": 0
+      },
+      "count_delta": {
+        "verified": 21,
+        "human_review": -25,
+        "failed": 4
+      },
+      "total_api_cost_usd": 0.3051829,
+      "api_cost_delta_usd": -0.0331105,
+      "average_latency_ms": 30195.78,
+      "average_latency_delta_ms": -2298.79
+    },
+    "upstream_sku_stage_cost_usd": 0,
+    "upstream_sku_stage_latency_ms": 1860.11
+  },
+  "projection_65_35_0": false
+}

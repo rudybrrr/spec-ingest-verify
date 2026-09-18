@@ -33,6 +33,30 @@ class FakeClient:
         self.models = FakeModels(response)
 
 
+class SequenceModels:
+    def __init__(self, outcomes: list[object]) -> None:
+        self.outcomes = outcomes
+        self.calls: list[dict[str, object]] = []
+
+    def generate_content(self, **kwargs: object) -> FakeResponse:
+        self.calls.append(kwargs)
+        outcome = self.outcomes.pop(0)
+        if isinstance(outcome, Exception):
+            raise outcome
+        return outcome
+
+
+class FakeGeminiError(Exception):
+    def __init__(self, status_code: int) -> None:
+        self.status_code = status_code
+        super().__init__(f"{status_code} transient provider error")
+
+
+class SequenceClient:
+    def __init__(self, outcomes: list[object]) -> None:
+        self.models = SequenceModels(outcomes)
+
+
 def category() -> CategorySchema:
     return CategorySchema(
         name="laptop",
@@ -110,6 +134,11 @@ def test_extract_ocr_rejects_fields_outside_supplied_category(tmp_path: Path) ->
     with pytest.raises(GeminiExtractionError, match="outside supplied category"):
         extract_ocr_to_json(run, category(), client=client, api_key="test-key")
 
+    assert len(client.models.calls) == 1
+    metrics = json.loads(run.metrics_json.read_text(encoding="utf-8"))
+    assert metrics["stages"]["ocr"]["error_category"] == "schema"
+    assert metrics["stages"]["ocr"]["retry_count"] == 0
+
 
 def test_extract_ocr_fails_clearly_without_api_key(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
@@ -129,3 +158,48 @@ def test_extract_ocr_fails_when_gemini_returns_unparseable_output(tmp_path: Path
 
     with pytest.raises(GeminiExtractionError, match="structured ExtractionResult"):
         extract_ocr_to_json(run, category(), client=client, api_key="test-key")
+
+
+def test_extract_ocr_retries_transient_503_then_succeeds(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    run = RunDirectory.create(tmp_path, "run-001")
+    run.ocr_text.write_text("Screen size: 15.6 in\n", encoding="utf-8")
+    response = FakeResponse(
+        {
+            "run_id": "run-001",
+            "branch": "ocr",
+            "category": category().model_dump(),
+            "fields": {"screen_size": {"value": 15.6, "unit": "in", "page": 1}},
+        }
+    )
+    client = SequenceClient([FakeGeminiError(503), response])
+    monkeypatch.setattr("builderlab_verify.retry.time.sleep", lambda _: None)
+    monkeypatch.setattr("builderlab_verify.retry.random.random", lambda: 0.5)
+
+    extract_ocr_to_json(run, category(), client=client, api_key="test-key")
+
+    assert len(client.models.calls) == 2
+    metrics = json.loads(run.metrics_json.read_text(encoding="utf-8"))
+    assert metrics["stages"]["ocr"]["attempts"] == 2
+    assert metrics["stages"]["ocr"]["retry_count"] == 1
+    assert metrics["stages"]["ocr"]["errors"][0]["status_code"] == 503
+
+
+def test_extract_ocr_persists_exhausted_transient_retries(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    run = RunDirectory.create(tmp_path, "run-001")
+    run.ocr_text.write_text("Screen size: 15.6 in\n", encoding="utf-8")
+    client = SequenceClient([FakeGeminiError(503) for _ in range(4)])
+    monkeypatch.setattr("builderlab_verify.retry.time.sleep", lambda _: None)
+    monkeypatch.setattr("builderlab_verify.retry.random.random", lambda: 0.5)
+
+    with pytest.raises(GeminiExtractionError, match="503 transient provider error"):
+        extract_ocr_to_json(run, category(), client=client, api_key="test-key")
+
+    metrics = json.loads(run.metrics_json.read_text(encoding="utf-8"))
+    assert len(client.models.calls) == 4
+    assert metrics["stages"]["ocr"]["attempts"] == 4
+    assert metrics["stages"]["ocr"]["retry_count"] == 3
+    assert len(metrics["stages"]["ocr"]["errors"]) == 4

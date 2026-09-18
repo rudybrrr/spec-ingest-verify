@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import fitz
@@ -7,6 +8,7 @@ from PIL import Image
 from builderlab_verify.ingestion import (
     InvalidPDFError,
     TesseractUnavailableError,
+    TesseractTimeoutError,
     ingest_pdf,
     run_tesseract,
 )
@@ -51,6 +53,36 @@ def test_ingest_copies_pdf_renders_lossless_pages_and_combines_ocr(
     assert output.read_text(encoding="utf-8") == (
         "OCR for page-001.png\n\nOCR for page-002.png\n"
     )
+    native_text = run.native_text.read_text(encoding="utf-8")
+    native_metadata = json.loads(run.native_text_json.read_text(encoding="utf-8"))
+    assert "First page" in native_text and "Second page" in native_text
+    assert native_metadata["status"] == "available"
+    assert native_metadata["usable"] is False
+
+
+def test_native_text_failure_is_non_fatal_and_explicitly_persisted(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    source = tmp_path / "input.pdf"
+    make_pdf(source, "A page with enough text to keep the OCR path running")
+    run = RunDirectory.create(tmp_path, "run-001")
+
+    monkeypatch.setattr("builderlab_verify.ingestion._resolve_tesseract", lambda command: command)
+    monkeypatch.setattr(
+        "builderlab_verify.ingestion.extract_native_text",
+        lambda path: (_ for _ in ()).throw(RuntimeError("native parser failed")),
+    )
+    monkeypatch.setattr(
+        "builderlab_verify.ingestion.run_tesseract",
+        lambda image_path, command=None, psm=None, timeout_seconds=None: "OCR survived",
+    )
+
+    ingest_pdf(source, run, tesseract_cmd="fake-tesseract")
+
+    saved = json.loads(run.native_text_json.read_text(encoding="utf-8"))
+    assert saved["status"] == "failed"
+    assert saved["error"] == "RuntimeError: native parser failed"
+    assert run.ocr_text.read_text(encoding="utf-8") == "OCR survived\n"
 
 
 def test_run_tesseract_uses_configured_psm(
@@ -73,6 +105,36 @@ def test_run_tesseract_uses_configured_psm(
 
     assert run_tesseract(image, command="fake-tesseract", psm=11) == "recognized"
     assert calls == [["fake-tesseract", str(image), "stdout", "--psm", "11"]]
+
+
+def test_run_tesseract_applies_configured_timeout(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    image = tmp_path / "page.png"
+    image.write_bytes(b"png")
+    monkeypatch.setattr("builderlab_verify.ingestion._resolve_tesseract", lambda command: command)
+    def timed_out(*args, **kwargs):
+        raise subprocess.TimeoutExpired(args[0], kwargs["timeout"])
+    import subprocess
+    monkeypatch.setattr("builderlab_verify.ingestion.subprocess.run", timed_out)
+    with pytest.raises(TesseractTimeoutError, match="timed out"):
+        run_tesseract(image, command="fake-tesseract", timeout_seconds=3)
+
+
+def test_ingest_persists_partial_progress_on_timeout(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    source = tmp_path / "input.pdf"
+    make_pdf(source, "First page", "Second page")
+    run = RunDirectory.create(tmp_path, "run-001")
+    monkeypatch.setattr("builderlab_verify.ingestion._resolve_tesseract", lambda command: command)
+    def fake_tesseract(image_path, command=None, psm=None, timeout_seconds=None):
+        if image_path.name == "page-002.png":
+            raise TesseractTimeoutError("Tesseract timed out on page-002.png after 1 seconds")
+        return "first page"
+    monkeypatch.setattr("builderlab_verify.ingestion.run_tesseract", fake_tesseract)
+    with pytest.raises(TesseractTimeoutError):
+        ingest_pdf(source, run, tesseract_cmd="fake-tesseract", tesseract_timeout_seconds=1)
+    progress = run.root.joinpath("ocr-progress.json")
+    assert progress.exists()
+    assert progress.read_text(encoding="utf-8").find('"page": 2') >= 0
+    assert run.ocr_text.exists()
 
 
 def test_ingest_rejects_invalid_pdf_without_creating_source_copy(tmp_path: Path) -> None:

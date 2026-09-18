@@ -13,7 +13,11 @@ dist/
 !.env.example
 
 data/
+!data/
+data/*
+!data/external_provenance.json
 *.pdf
+!reports/v0/*.pdf
 *.log
 
 # Local pipeline inputs, generated runs, smoke tests, and test fixtures.
@@ -21,3 +25,10 @@ data/
 .smoke-test*/
 .test-work/
 .streamlit/
+.pytest-tmp/
+.paddlex/
+adjudication_pack/
+
+# Temporary downloaded provenance/source documents.
+provenance_downloads/
+.downloads/

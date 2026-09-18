@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from time import perf_counter
 from pathlib import Path
 from typing import Any
 
@@ -11,6 +12,9 @@ from google.genai import types
 from pydantic import ValidationError
 
 from builderlab_verify.models import ExtractionBranch, ExtractionResult
+from builderlab_verify.models import TokenUsage
+from builderlab_verify.metrics import record_stage
+from builderlab_verify.retry import RetryFailure, RetryInfo, call_with_retry
 from builderlab_verify.ocr import (
     _api_key_from_settings,
     _safe_error,
@@ -62,19 +66,35 @@ def extract_vision_to_json(
         prompt,
     ]
 
+    started = perf_counter()
+    retry_info = RetryInfo()
     try:
         gemini_client = client or genai.Client(api_key=resolved_key)
-        response = gemini_client.models.generate_content(
-            model=VISION_MODEL_ID,
-            contents=contents,
-            config=request_config,
+        response, retry_info = call_with_retry(
+            lambda: gemini_client.models.generate_content(
+                model=VISION_MODEL_ID,
+                contents=contents,
+                config=request_config,
+            )
         )
-    except Exception as error:
+    except RetryFailure as failure:
+        error = failure.error
+        retry_info = failure.info
+        record_stage(run.metrics_json, "vision", model=VISION_MODEL_ID, usage=None,
+                     latency_ms=(perf_counter() - started) * 1000,
+                     error_category="api", error=_safe_error(error, resolved_key),
+                     **retry_info.as_dict())
         raise GeminiVisionError(
             f"Gemini Vision request failed: {_safe_error(error, resolved_key)}"
         ) from error
 
     usage = getattr(response, "usage_metadata", None)
+    token_usage = TokenUsage(
+        prompt=_usage_value(usage, "prompt_token_count"),
+        candidates=_usage_value(usage, "candidates_token_count"),
+        thoughts=_usage_value(usage, "thoughts_token_count"),
+        total=_usage_value(usage, "total_token_count"),
+    )
     LOGGER.info(
         "Gemini Vision extraction usage model=%s prompt_token_count=%s "
         "candidates_token_count=%s total_token_count=%s",
@@ -86,23 +106,46 @@ def extract_vision_to_json(
 
     parsed = getattr(response, "parsed", None)
     if parsed is None:
-        raise GeminiVisionError("Gemini did not return structured ExtractionResult JSON.")
+        message = "Gemini did not return structured ExtractionResult JSON."
+        record_stage(run.metrics_json, "vision", model=VISION_MODEL_ID, usage=token_usage,
+                     latency_ms=(perf_counter() - started) * 1000,
+                     error_category="schema", error=message, **retry_info.as_dict())
+        raise GeminiVisionError(message)
     try:
         result = ExtractionResult.model_validate(parsed)
     except ValidationError as error:
+        message = f"Gemini returned invalid structured ExtractionResult: {error}"
+        record_stage(run.metrics_json, "vision", model=VISION_MODEL_ID, usage=token_usage,
+                     latency_ms=(perf_counter() - started) * 1000,
+                     error_category="schema", error=message, **retry_info.as_dict())
         raise GeminiVisionError(
-            f"Gemini returned invalid structured ExtractionResult: {error}"
+            message
         ) from error
 
     expected_fields = {field.name for field in category.fields}
     actual_fields = set(result.fields)
     if not actual_fields <= expected_fields:
         extras = ", ".join(sorted(actual_fields - expected_fields))
-        raise GeminiVisionError(f"Gemini returned fields outside supplied category: {extras}")
+        message = f"Gemini returned fields outside supplied category: {extras}"
+        record_stage(run.metrics_json, "vision", model=VISION_MODEL_ID, usage=token_usage,
+                     latency_ms=(perf_counter() - started) * 1000,
+                     error_category="schema", error=message, **retry_info.as_dict())
+        raise GeminiVisionError(message)
     if result.run_id != run.root.name or result.branch is not ExtractionBranch.VISION:
-        raise GeminiVisionError("Gemini returned an unexpected run_id or extraction branch.")
+        message = "Gemini returned an unexpected run_id or extraction branch."
+        record_stage(run.metrics_json, "vision", model=VISION_MODEL_ID, usage=token_usage,
+                     latency_ms=(perf_counter() - started) * 1000,
+                     error_category="schema", error=message, **retry_info.as_dict())
+        raise GeminiVisionError(message)
     if result.category != category:
-        raise GeminiVisionError("Gemini returned a category different from the supplied schema.")
+        message = "Gemini returned a category different from the supplied schema."
+        record_stage(run.metrics_json, "vision", model=VISION_MODEL_ID, usage=token_usage,
+                     latency_ms=(perf_counter() - started) * 1000,
+                     error_category="schema", error=message, **retry_info.as_dict())
+        raise GeminiVisionError(message)
 
     run.vision_json.write_text(result.model_dump_json(indent=2) + "\n", encoding="utf-8")
+    record_stage(run.metrics_json, "vision", model=VISION_MODEL_ID, usage=token_usage,
+                 latency_ms=(perf_counter() - started) * 1000,
+                 **retry_info.as_dict())
     return run.vision_json

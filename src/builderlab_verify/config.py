@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     gemini_api_key: SecretStr | None = None
     tesseract_cmd: str = "tesseract"
     tesseract_psm: int = 3
+    tesseract_timeout_seconds: float = 30.0
 
     @field_validator("gemini_api_key", mode="before")
     @classmethod

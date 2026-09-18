@@ -10,6 +10,7 @@ from builderlab_verify.schemas import CategorySchema
 
 class ExtractionBranch(StrEnum):
     OCR = "ocr"
+    NATIVE_TEXT = "native_text"
     VISION = "vision"
 
 

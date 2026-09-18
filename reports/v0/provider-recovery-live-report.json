@@ -1,0 +1,131 @@
+{
+  "selection": {
+    "count": 2,
+    "filenames": [
+      "10-AT3.pdf",
+      "100-ATN10K6.pdf"
+    ],
+    "schema": {
+      "name": "spec_sheet",
+      "fields": [
+        {
+          "name": "part_number",
+          "description": "Unique manufacturer/orderable part identifier for the specific product represented by the document. Do not use product-family names, document titles, drawing labels, stock labels, or arbitrary variant identifiers. Return null for multi-product/portfolio documents or when no single unique part number is clearly identifiable.",
+          "required": true
+        },
+        {
+          "name": "description",
+          "description": "Short product description",
+          "required": false
+        }
+      ]
+    }
+  },
+  "counts": {
+    "verified": {
+      "count": 0,
+      "percentage": 0.0
+    },
+    "human_review": {
+      "count": 2,
+      "percentage": 100.0
+    },
+    "failed": {
+      "count": 0,
+      "percentage": 0.0
+    }
+  },
+  "not_started_count": 0,
+  "escalation_fields": [
+    [
+      "part_number",
+      2
+    ],
+    [
+      "description",
+      1
+    ]
+  ],
+  "escalation_reasons": [
+    [
+      "uncertain",
+      2
+    ],
+    [
+      "mismatch",
+      1
+    ],
+    [
+      "OCR value refers to a general Polyurethane Timing Belt while the Vision value refers to ATN Convertible Timing Belts.",
+      1
+    ]
+  ],
+  "failure_taxonomy": {},
+  "processing_time_ms": {
+    "average": 10930.52,
+    "median": 10930.52,
+    "total": 21861.04
+  },
+  "token_usage_by_stage": {
+    "ocr": {
+      "prompt": 2278,
+      "candidates": 490,
+      "total": 2768
+    },
+    "vision": {
+      "prompt": 1899,
+      "candidates": 495,
+      "total": 2394
+    },
+    "checker": {
+      "prompt": 230,
+      "candidates": 78,
+      "total": 308
+    },
+    "native_text": {
+      "prompt": 3957,
+      "candidates": 502,
+      "total": 4459
+    },
+    "upstream_sku": {}
+  },
+  "cost_usd_by_stage": {
+    "ocr": 0.0004238,
+    "vision": 0.0003879,
+    "native_text": 0.0005965,
+    "checker": 5.42e-05
+  },
+  "latency_ms_by_stage": {
+    "ocr": 3345.65,
+    "vision": 8324.67,
+    "checker": 1419.68,
+    "native_text": 3115.09,
+    "upstream_sku": 12.57
+  },
+  "total_api_cost_usd": 0.0014624,
+  "average_api_cost_usd": 0.0007312,
+  "documents": [
+    {
+      "filename": "10-AT3.pdf",
+      "run_id": "10-at3",
+      "status": "human_review",
+      "latency_ms": 10093.72,
+      "external_provenance_status": "not_found"
+    },
+    {
+      "filename": "100-ATN10K6.pdf",
+      "run_id": "100-atn10k6",
+      "status": "human_review",
+      "latency_ms": 11767.32,
+      "external_provenance_status": "not_found"
+    }
+  ],
+  "external_provenance": {
+    "status_counts": {
+      "not_found": 2
+    },
+    "accepted_exact_hash_match_count": 0,
+    "rescued_count": 0,
+    "rescued_documents": []
+  }
+}

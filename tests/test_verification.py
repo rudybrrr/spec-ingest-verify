@@ -4,6 +4,7 @@ from types import SimpleNamespace
 
 import pytest
 
+import builderlab_verify.verification as verification_module
 from builderlab_verify.models import AlignmentStatus, RunStatus
 from builderlab_verify.schemas import CategoryField, CategorySchema
 from builderlab_verify.storage import RunDirectory
@@ -58,6 +59,14 @@ def seed_run(tmp_path: Path, cat: CategorySchema, ocr: dict, vision: dict) -> Ru
     run = RunDirectory.create(tmp_path, "run-001")
     run.ocr_json.write_text(json.dumps(ocr), encoding="utf-8")
     run.vision_json.write_text(json.dumps(vision), encoding="utf-8")
+    return run
+
+
+def seed_run_with_native(
+    tmp_path: Path, cat: CategorySchema, ocr: dict, native: dict, vision: dict
+) -> RunDirectory:
+    run = seed_run(tmp_path, cat, ocr, vision)
+    run.native_json.write_text(json.dumps(native), encoding="utf-8")
     return run
 
 
@@ -156,3 +165,127 @@ def test_all_matching_fields_produce_verified_status(tmp_path: Path) -> None:
 
     assert result["fields"]["drawing_number"]["status"] == AlignmentStatus.MATCH
     assert result["status"] == RunStatus.VERIFIED
+
+
+def test_part_number_formatting_variants_match_without_rewriting_snapshots(tmp_path: Path) -> None:
+    cat = CategorySchema(name="part", fields=[CategoryField(name="part_number")])
+    run = seed_run(
+        tmp_path,
+        cat,
+        extraction("run-001", "ocr", cat, {"part_number": "01861.0-00"}),
+        extraction("run-001", "vision", cat, {"part_number": "018610-00"}),
+    )
+    client = FakeClient(checker_output("run-001", {}))
+
+    verify_ocr_vision(run, cat, client=client, api_key="test-key")
+    result = json.loads(run.verification_json.read_text(encoding="utf-8"))
+
+    assert result["fields"]["part_number"]["status"] == AlignmentStatus.MATCH
+    assert result["fields"]["part_number"]["ocr"]["value"] == "01861.0-00"
+    assert result["fields"]["part_number"]["vision"]["value"] == "018610-00"
+    assert client.calls == []
+
+
+def test_native_part_number_rescues_only_when_it_aligns_with_vision(tmp_path: Path) -> None:
+    cat = CategorySchema(name="part", fields=[CategoryField(name="part_number")])
+    run = seed_run_with_native(
+        tmp_path,
+        cat,
+        extraction("run-001", "ocr", cat, {"part_number": "101DORO010-S10"}),
+        extraction("run-001", "native_text", cat, {"part_number": "101DOR010-S10"}),
+        extraction("run-001", "vision", cat, {"part_number": "101DOR010-S10"}),
+    )
+    client = FakeClient(checker_output("run-001", {"part_number": {"status": "mismatch"}}))
+
+    verify_ocr_vision(run, cat, client=client, api_key="test-key")
+    initial = json.loads(run.verification_json.read_text(encoding="utf-8"))
+
+    assert initial["status"] == RunStatus.HUMAN_REVIEW
+    assert initial["fields"]["part_number"]["status"] == AlignmentStatus.MISMATCH
+    assert len(client.calls) == 1
+    assert hasattr(verification_module, "apply_native_part_number_fallback")
+
+    rescued = verification_module.apply_native_part_number_fallback(run, cat)
+    result = json.loads(run.verification_json.read_text(encoding="utf-8"))
+
+    assert rescued is True
+    assert result["status"] == RunStatus.VERIFIED
+    assert result["fields"]["part_number"]["status"] == AlignmentStatus.MATCH
+    assert result["fields"]["part_number"]["ocr"]["value"] == "101DORO010-S10"
+    assert result["fields"]["part_number"]["vision"]["value"] == "101DOR010-S10"
+    assert "native" in result["notes"]["part_number"].lower()
+    assert len(client.calls) == 1
+
+
+def test_native_part_number_mismatch_preserves_initial_human_review(tmp_path: Path) -> None:
+    cat = CategorySchema(name="part", fields=[CategoryField(name="part_number")])
+    run = seed_run_with_native(
+        tmp_path,
+        cat,
+        extraction("run-001", "ocr", cat, {"part_number": "wrong"}),
+        extraction("run-001", "native_text", cat, {"part_number": "still-wrong"}),
+        extraction("run-001", "vision", cat, {"part_number": "RIGHT-1"}),
+    )
+    client = FakeClient(checker_output("run-001", {"part_number": {"status": "mismatch"}}))
+
+    verify_ocr_vision(run, cat, client=client, api_key="test-key")
+    initial = run.verification_json.read_text(encoding="utf-8")
+
+    assert hasattr(verification_module, "apply_native_part_number_fallback")
+    rescued = verification_module.apply_native_part_number_fallback(run, cat)
+
+    assert rescued is False
+    assert run.verification_json.read_text(encoding="utf-8") == initial
+
+
+def test_native_part_number_does_not_change_unrelated_field_verification(tmp_path: Path) -> None:
+    cat = CategorySchema(
+        name="part",
+        fields=[CategoryField(name="part_number"), CategoryField(name="description")],
+    )
+    run = seed_run_with_native(
+        tmp_path,
+        cat,
+        extraction("run-001", "ocr", cat, {"part_number": "bad", "description": "old"}),
+        extraction("run-001", "native_text", cat, {"part_number": "GOOD-1", "description": "new"}),
+        extraction("run-001", "vision", cat, {"part_number": "GOOD-1", "description": "new"}),
+    )
+    client = FakeClient(checker_output("run-001", {
+        "part_number": {"status": "mismatch"},
+        "description": {"status": "mismatch"},
+    }))
+
+    verify_ocr_vision(run, cat, client=client, api_key="test-key")
+    assert verification_module.apply_native_part_number_fallback(run, cat) is True
+    result = json.loads(run.verification_json.read_text(encoding="utf-8"))
+
+    assert result["status"] == RunStatus.HUMAN_REVIEW
+    assert result["fields"]["part_number"]["status"] == AlignmentStatus.MATCH
+    assert result["fields"]["description"]["status"] == AlignmentStatus.MISMATCH
+    assert len(client.calls) == 1
+
+
+def test_description_compatible_elaboration_matches_but_contradiction_still_checks(tmp_path: Path) -> None:
+    cat = CategorySchema(name="part", fields=[CategoryField(name="description")])
+    run = seed_run(
+        tmp_path / "compatible",
+        cat,
+        extraction("run-001", "ocr", cat, {"description": "AC induction motor, 1 hp."}),
+        extraction("run-001", "vision", cat, {"description": "AC induction motor, 1 hp. Brake assembly included."}),
+    )
+    client = FakeClient(checker_output("run-001", {"description": {"status": "mismatch"}}))
+
+    verify_ocr_vision(run, cat, client=client, api_key="test-key")
+    result = json.loads(run.verification_json.read_text(encoding="utf-8"))
+
+    assert result["fields"]["description"]["status"] == AlignmentStatus.MATCH
+    assert client.calls == []
+
+    contradictory = seed_run(
+        tmp_path / "contradictory",
+        cat,
+        extraction("run-001", "ocr", cat, {"description": "AC induction motor, 1 hp."}),
+        extraction("run-001", "vision", cat, {"description": "AC induction motor, 5 hp."}),
+    )
+    verify_ocr_vision(contradictory, cat, client=client, api_key="test-key")
+    assert len(client.calls) == 1

@@ -1,0 +1,1274 @@
+{
+  "experiment": "upstream_sku_verification",
+  "production_code_changed": false,
+  "metadata_source": "input/index.csv",
+  "metadata_columns": [
+    "SKU",
+    "Category",
+    "File",
+    "SizeKB",
+    "SourcePath"
+  ],
+  "corpus": {
+    "evaluation_manifest": ".runs/evaluation-100-spec-sheet-native-lazy-fallback-authorized/manifest.json",
+    "selected_pdfs": 100,
+    "index_rows": 8668,
+    "index_rows_for_selected_pdfs": 100,
+    "missing_index_rows": [],
+    "sku_populated": 100,
+    "sku_unique": 100
+  },
+  "review_population": {
+    "count": 45,
+    "expected": 45,
+    "evaluated": 45
+  },
+  "classification_counts": {
+    "insufficient evidence": 34,
+    "supported": 10,
+    "contradicted": 1
+  },
+  "safe_additional_auto_verifications": 10,
+  "false_positive_risk": {
+    "assessment": "low-to-moderate under this experiment rule; not zero",
+    "controls": [
+      "filename, run id, and manifest identity are excluded from PDF evidence",
+      "punctuation-only equivalence uses the existing normalization",
+      "single unlabeled substring occurrence is not sufficient by itself",
+      "contradiction requires explicit alternative labeling or repeated structured agreement"
+    ],
+    "residual_risks": [
+      "OCR/native/Vision may share a source-document error",
+      "a multi-product sheet can explicitly list several valid identifiers",
+      "raw-text occurrence detection does not establish product association without a nearby label"
+    ]
+  },
+  "cases": [
+    {
+      "filename": "00551106.pdf",
+      "run_id": "00551106",
+      "expected_sku": "00551106",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "00571102.pdf",
+      "run_id": "00571102",
+      "expected_sku": "00571102",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "00591104.pdf",
+      "run_id": "00591104",
+      "expected_sku": "00591104",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "00601102.pdf",
+      "run_id": "00601102",
+      "expected_sku": "00601102",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "00681101.pdf",
+      "run_id": "00681101",
+      "expected_sku": "00681101",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "00701101.pdf",
+      "run_id": "00701101",
+      "expected_sku": "00701101",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "00741200.pdf",
+      "run_id": "00741200",
+      "expected_sku": "00741200",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "00751200.pdf",
+      "run_id": "00751200",
+      "expected_sku": "00751200",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "01.02.120.pdf",
+      "run_id": "01-02-120",
+      "expected_sku": "01.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "02.02.120.pdf",
+      "run_id": "02-02-120",
+      "expected_sku": "02.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "03.02.120.pdf",
+      "run_id": "03-02-120",
+      "expected_sku": "03.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "04A-B01.pdf",
+      "run_id": "04a-b01",
+      "expected_sku": "04A-B01",
+      "status": "supported",
+      "supporting_families": [
+        "docling",
+        "evidence_candidates",
+        "native"
+      ],
+      "explicit_label_support": [],
+      "matching_hits": [
+        {
+          "family": "native",
+          "value": "04A-B01",
+          "normalized": "04ab01",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "04A-B01",
+          "normalized": "04ab01",
+          "label": null,
+          "context": "04A-B01 | 04A-B01* | 04A 04A-B01 469+.010"
+        },
+        {
+          "family": "docling",
+          "value": "04A-B01*",
+          "normalized": "04ab01",
+          "label": "part number",
+          "context": "Part Number | Description | 04A | Basic Switch | 04A-K01 | Switch with Arrowhead Keycap | 04A-K02 | Switch with Keycap | 04A-B01* | Switch with Bat-Handle | (*shipped with bat handle permanently attached)"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "native",
+          "value": "04A-B01"
+        }
+      ]
+    },
+    {
+      "filename": "04J-AP-T01.pdf",
+      "run_id": "04j-ap-t01",
+      "expected_sku": "04J-AP-T01",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "04J-AS-T01.pdf",
+      "run_id": "04j-as-t01",
+      "expected_sku": "04J-AS-T01",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "05.02.120.pdf",
+      "run_id": "05-02-120",
+      "expected_sku": "05.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "05.02.80A-05.01.71A.pdf",
+      "run_id": "05-02-80a-05-01-71a",
+      "expected_sku": "05.02.80A-05.01.71A",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "05.02.81A-05.01.72A.pdf",
+      "run_id": "05-02-81a-05-01-72a",
+      "expected_sku": "05.02.81A-05.01.72A",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "06.02.120.pdf",
+      "run_id": "06-02-120",
+      "expected_sku": "06.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "06513.0-00.pdf",
+      "run_id": "06513-0-00",
+      "expected_sku": "06513.0-00",
+      "status": "supported",
+      "supporting_families": [
+        "docling",
+        "evidence_candidates",
+        "native",
+        "tesseract",
+        "vision"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "tesseract",
+          "label": "manufacturer part number",
+          "context": "Rating IP20 Switching Differential 18 \u00b0F (10K) Heating Capacity 100W Switching Tolerance +1.8 \u00b0F Heating Element Touch-safe PTC resistor Mounting 35mm DIN rail Operating Voltage 120-240 VAC/VDC Manufacturer Part Number 06513.0-00 Hertz 50/60 Hz Pressure clamps for (2) 14 AWG max (SoU Sede stranded (with wire ferrule) or solid wire Agency Approvals Dimensional Drawings UL Listed File # None UL Recognized File # E234324 UL Hazardous File # None 2D Drawing P"
+        },
+        {
+          "family": "native",
+          "label": "manufacturer part number",
+          "context": "Rating IP20 Switching Differential 18 \u00b0F (10K) Heating Capacity 100W Switching Tolerance \u00b11.8 \u00b0F Heating Element Touch-safe PTC resistor Mounting 35mm DIN rail Operating Voltage 120\u2013240 VAC/VDC Manufacturer Part Number 06513.0\u201300 Hertz 50/60 Hz Pressure clamps for (2) 14 AWG max Connection stranded (with wire ferrule) or solid wire Agency Approvals Dimensional Drawings UL Listed File # None UL Recognized File # E234324 UL Hazardous File # None 2D Drawi"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "06513.0-00",
+          "normalized": "06513000",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "vision",
+          "value": "06513.0-00",
+          "normalized": "06513000",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "tesseract",
+          "value": "06513.0-00",
+          "normalized": "06513000",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "native",
+          "value": "06513.0-00",
+          "normalized": "06513000",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "06513.0-00",
+          "normalized": "06513000",
+          "label": "part number",
+          "context": "06513.0-00 Cut Sheet | 06513.0\u201300 | 06513.0-00 Cut Sheet VAUTOMATIONDIRECT: | Part Number +1.8 35mm 06513.0-00 Fixed N.C. (open \u00b0F"
+        },
+        {
+          "family": "docling",
+          "value": "06513.0-00",
+          "normalized": "06513000",
+          "label": "manufacturer part number",
+          "context": "Heater Control | Fixed thermostat | Contact 1 | N.C. (open on rise) 41 \u00b0F (5 \u00b0C) switch-on | Switching Differential | 18 \u00b0F (10K) | Switching Tolerance | \u00b11.8 \u00b0F | Mounting | 35mm DIN rail | Manufacturer Part Number | 06513.0-00"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "06513.0-00"
+        },
+        {
+          "family": "vision",
+          "value": "06513.0-00"
+        },
+        {
+          "family": "tesseract",
+          "value": "06513.0-00"
+        },
+        {
+          "family": "native",
+          "value": "06513.0-00"
+        }
+      ]
+    },
+    {
+      "filename": "06520.0-00.pdf",
+      "run_id": "06520-0-00",
+      "expected_sku": "06520.0-00",
+      "status": "supported",
+      "supporting_families": [
+        "docling",
+        "evidence_candidates",
+        "native",
+        "tesseract",
+        "vision"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "native",
+          "label": "manufacturer part number",
+          "context": "IP20 Switching Differential 18 \u00b0F (10K) Heating Capacity 50W Switching Tolerance \u00b11.8 \u00b0F Heating Element Touch-safe PTC resistor Mounting 35mm DIN rail or panel Operating Voltage 120\u2013240 VAC/VDC Manufacturer Part Number 06520.0\u201300 Hertz 50/60 Hz Pressure clamps for (2) 14 AWG max Connection stranded (with wire ferrule) or solid wire Agency Approvals Dimensional Drawings UL Listed File # None UL Recognized File # E234324 UL Hazardous File # None 2D Drawi"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "06520.0-00",
+          "normalized": "06520000",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "vision",
+          "value": "06520.0-00",
+          "normalized": "06520000",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "tesseract",
+          "value": "06520.0-00",
+          "normalized": "06520000",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "native",
+          "value": "06520.0-00",
+          "normalized": "06520000",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "06520.0-00",
+          "normalized": "06520000",
+          "label": null,
+          "context": "06520.0-00 Cut Sheet | 06520.0\u201300 | PartNumber Drawings +1.8 35mm 06520.0-00 2D See Fixed N.C. | Frozen ocr_structured part_number field; region unavailable"
+        },
+        {
+          "family": "docling",
+          "value": "06520.0-00",
+          "normalized": "06520000",
+          "label": "manufacturer part number",
+          "context": "Heater Control | Fixed thermostat | Contact 1 | N.C. (open on rise) 59 \u00b0F (15 \u00b0C) switch-on | Switching Differential | 18 \u00b0F (10K) | Switching Tolerance | \u00b11.8 \u00b0F | Mounting | 35mm DIN rail or panel | Manufacturer Part Number | 06520.0-00"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "06520.0-00"
+        },
+        {
+          "family": "vision",
+          "value": "06520.0-00"
+        },
+        {
+          "family": "tesseract",
+          "value": "06520.0-00"
+        },
+        {
+          "family": "native",
+          "value": "06520.0-00"
+        }
+      ]
+    },
+    {
+      "filename": "07.02.120.pdf",
+      "run_id": "07-02-120",
+      "expected_sku": "07.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "08.02.120.pdf",
+      "run_id": "08-02-120",
+      "expected_sku": "08.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "09.02.120.pdf",
+      "run_id": "09-02-120",
+      "expected_sku": "09.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "1-1414631-0.pdf",
+      "run_id": "1-1414631-0",
+      "expected_sku": "1-1414631-0",
+      "status": "supported",
+      "supporting_families": [
+        "docling",
+        "evidence_candidates",
+        "native",
+        "tesseract",
+        "vision"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "tesseract",
+          "label": "part number",
+          "context": "TE July 26, 2022 ss connectivity DATA SHEET - HOLLOW SHAFT RESOLVER Part Number 1-1414631-0 Description \u2018| ________vaaa0r- stoor-s01_[ SCS see SSSSCir Cid [Customer PN [ Input voltage (Vims) [V] Input resistance R1-R2 [Q] Frequency (typical) [KHz] R1\u2014-R2 tolerance [%] Output resistance S1-S3 or S2-S4[Q] | 68 _| Based on specified Inputvoltageand"
+        },
+        {
+          "family": "native",
+          "label": "part number",
+          "context": "Page 1] July 26, 2022 DATA SHEET - HOLLOW SHAFT RESOLVER Part Number 1-1414631-0 Description V23401- S1001-B101 Size 15 Shaft inner diameter [mm] 9.52H8 Speed (pair of poles) [p] 1 Number of poles 2 Customer PN 0 Application Specification 114 \u2013 160394 Test protocol Results saved to manufacturing site arch"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "1-1414631-0",
+          "normalized": "114146310",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "vision",
+          "value": "1-1414631-0",
+          "normalized": "114146310",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "tesseract",
+          "value": "1-1414631-0",
+          "normalized": "114146310",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "native",
+          "value": "1-1414631-0",
+          "normalized": "114146310",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "1-1414631-0",
+          "normalized": "114146310",
+          "label": null,
+          "context": "1-1414631-0 | Frozen ocr_structured part_number field; region unavailable | Frozen vision part_number field; region unavailable"
+        },
+        {
+          "family": "docling",
+          "value": "1-1414631-0",
+          "normalized": "114146310",
+          "label": "part number",
+          "context": "Part Number | Description | S1001-B101 V23401- | Size | 15 | Shaft inner diameter [mm] | Speed (pair of poles) [p] | 1 | Number of poles | 2 | Customer PN | Application Specification | Test protocol | Input voltage (Vrms ) [V] | 7.0 | 82 | Frequency (typical) [kHz] | 10.0 | \u00b1 10 | Input current max [mA] | 40 | 68 | Transformation ratio (r T ) | 0.50 | \u00b1 10 | Transf. ratio tolerance [%] | \u00b1 4 | Phase shift (\u03c8) min [\u00ba] | -2 | ZRO [\u03a9] (\u00b115%) = 133+j154 | Phase shift (\u03c8) max [\u00ba] | 8 | ZRS [\u03a9] (\u00b115%) = 117+j134 | Angular Error | [1] | max ['] | \u00b1 10 (20) | ZSO [\u03a9] (\u00b115%) = 121+j189 | Residual voltage max [mV] | 25 | ZSS [\u03a9] (\u00b115%) = 205+j341 | Voltage: 500V | AC | (A) | 250V | AC | (B) | Voltage: 500V | DC | (A,B) | Criterium: R | isol. > 50M\u2126 | Rotor Inertia | Max. Rotational Speed | Shock resistance (11ms sine) | Vibration | Operating temperature | Permissible radial runout | Permissible axial offset | 0 | 1-1414631-0 | [1] Angular error spread \u0394\u03c6=\u03c6 el - \u03c6 mech . p | Electrical data measured at room temperature (22\u00b0C). | Based on specified Input voltage and Frequency | 9.52H8 | 114 - 160394 | Results saved to manufacturing site archives. Available by request. | High Voltage test | Measured between: | A: Winding R1-R2 and housing | Time: 1s | Winding S1-S3 and housing | Winding S2-S4 and housing | 0.075 mm | Isolation test | B: Windings S1-S3 and S2-S4 | \"Zero\" setting | Electrical \"0\" is when Coils V S2-S4 = 0 and VS1-S3 are in phase with VR1-R2 | Transfer function | Looking at transformation part and turning rotor clockwise | V S1 - S3 =+rT * V R1 - R2 * cos(p*\u03b1) | V S2 - S4 =+rT * V R1 - R2 * sin(p*\u03b1) | approx. 20g.cm 2 | 20 000 rpm | 1000 m/s 2 | 200 m/s 2 | -55\u00b0C\u2026+150\u00b0C | \u00b1 0.25 mm | Input resistance R1-R2 [\u03a9] | R1-R2 tolerance [%] | Output resistance S1-S3 or S2-S4 [\u03a9] | S1-S3 or S2-S4 tolerance [%]"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "1-1414631-0"
+        },
+        {
+          "family": "vision",
+          "value": "1-1414631-0"
+        },
+        {
+          "family": "tesseract",
+          "value": "1-1414631-0"
+        },
+        {
+          "family": "native",
+          "value": "1-1414631-0"
+        }
+      ]
+    },
+    {
+      "filename": "1-2186527-1.pdf",
+      "run_id": "1-2186527-1",
+      "expected_sku": "1-2186527-1",
+      "status": "supported",
+      "supporting_families": [
+        "evidence_candidates",
+        "native",
+        "tesseract"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "tesseract",
+          "label": "part number",
+          "context": "ww.te.com/commerce/DocumentDelivery/DDEController PAGE 2 Ga\u00bb GD CLASS 1 DATA CLASSIFICATION - SEE POLICY TEC-02-04 Ga=D connectivity 7T2212-PRINTER PRINTER ORDERING INFORMATION DESCRIPTION PART NUMBER T2212-PRINTER 1-2186527-1 T2212-SWARE-PRINTER (Note 1) 1-2186528-1 PRINTER PROPERTIES PERFORMANCE PRINT SPEED 30, 40, 50, 75, 100, 125, 150mm/s. (1, 1.5, 2, 3, 4, 5, 6 in/s). PRINT WIDTH MAX 105.7mm (4.2in). PRINT DEFINITION 300 dpi Thermal Transfer. LABEL WIDTH 5 to 120mm (0.2 t"
+        },
+        {
+          "family": "native",
+          "label": "part number",
+          "context": "oller PAGE 2 CLASS 1 DATA CLASSIFICATION - SEE POLICY TEC-02-04 IDENT /// TTDS-275 \u2013ISSUE 1, T2212-PRINTER TE Proprietary Information [Page 3] T2212-PRINTER PRINTER ORDERING INFORMATION DESCRIPTION PART NUMBER T2212-PRINTER 1-2186527-1 T2212-SWARE-PRINTER (Note 1) 1-2186528-1 PRINTER PROPERTIES PERFORMANCE PRINT SPEED 30, 40, 50, 75, 100, 125, 150mm/s. (1, 1.5, 2, 3, 4, 5, 6 in/s). PRINT WIDTH MAX 105.7mm (4.2in). PRINT DEFINITION 300 dpi Thermal Transfer. LABEL WIDTH 5 to 120mm (0.2 t"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "1-2186527-1",
+          "normalized": "121865271",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "native",
+          "value": "1-2186527-1",
+          "normalized": "121865271",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "tesseract",
+          "value": "1-2186527-1",
+          "normalized": "121865271",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "native",
+          "value": "1-2186527-1",
+          "normalized": "121865271",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "1-2186527-1",
+          "normalized": "121865271",
+          "label": null,
+          "context": "1-2186527-1 | Frozen ocr_structured part_number field; region unavailable | Frozen native_structured part_number field; region unavailable"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "1-2186527-1"
+        },
+        {
+          "family": "native",
+          "value": "1-2186527-1"
+        },
+        {
+          "family": "tesseract",
+          "value": "1-2186527-1"
+        },
+        {
+          "family": "native",
+          "value": "1-2186527-1"
+        }
+      ]
+    },
+    {
+      "filename": "1-2186528-1.pdf",
+      "run_id": "1-2186528-1",
+      "expected_sku": "1-2186528-1",
+      "status": "supported",
+      "supporting_families": [
+        "evidence_candidates",
+        "native",
+        "tesseract"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "tesseract",
+          "label": "part number",
+          "context": "DDEController PAGE 2 Ga\u00bb GD CLASS 1 DATA CLASSIFICATION - SEE POLICY TEC-02-04 Ga=D connectivity 7T2212-PRINTER PRINTER ORDERING INFORMATION DESCRIPTION PART NUMBER T2212-PRINTER 1-2186527-1 T2212-SWARE-PRINTER (Note 1) 1-2186528-1 PRINTER PROPERTIES PERFORMANCE PRINT SPEED 30, 40, 50, 75, 100, 125, 150mm/s. (1, 1.5, 2, 3, 4, 5, 6 in/s). PRINT WIDTH MAX 105.7mm (4.2in). PRINT DEFINITION 300 dpi Thermal Transfer. LABEL WIDTH 5 to 120mm (0.2 to 4.7 in), 116mm (4.6 in) backing paper width"
+        },
+        {
+          "family": "native",
+          "label": "part number",
+          "context": "ION - SEE POLICY TEC-02-04 IDENT /// TTDS-275 \u2013ISSUE 1, T2212-PRINTER TE Proprietary Information [Page 3] T2212-PRINTER PRINTER ORDERING INFORMATION DESCRIPTION PART NUMBER T2212-PRINTER 1-2186527-1 T2212-SWARE-PRINTER (Note 1) 1-2186528-1 PRINTER PROPERTIES PERFORMANCE PRINT SPEED 30, 40, 50, 75, 100, 125, 150mm/s. (1, 1.5, 2, 3, 4, 5, 6 in/s). PRINT WIDTH MAX 105.7mm (4.2in). PRINT DEFINITION 300 dpi Thermal Transfer. LABEL WIDTH 5 to 120mm (0.2 to 4.7 in), 116mm (4.6 in) backing paper width"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "1-2186528-1",
+          "normalized": "121865281",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "tesseract",
+          "value": "1-2186528-1",
+          "normalized": "121865281",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "native",
+          "value": "1-2186528-1",
+          "normalized": "121865281",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "1-2186528-1",
+          "normalized": "121865281",
+          "label": null,
+          "context": "1-2186528-1 | Frozen ocr_structured part_number field; region unavailable"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "1-2186528-1"
+        },
+        {
+          "family": "tesseract",
+          "value": "1-2186528-1"
+        },
+        {
+          "family": "native",
+          "value": "1-2186528-1"
+        }
+      ]
+    },
+    {
+      "filename": "1-2186576-1.pdf",
+      "run_id": "1-2186576-1",
+      "expected_sku": "1-2186576-1",
+      "status": "supported",
+      "supporting_families": [
+        "docling",
+        "evidence_candidates",
+        "native"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "native",
+          "label": "part number",
+          "context": "ls, \u2022 Label thickness 0.03 - 0.60 mm cable markers, and identification heat shrink, thermal transfer ribbons, meet MATERIAL relevant TE performance specifications. \u2022 Metal PRODUCT INFORMATION Part Number Part Description 1-2186576-1 T7112DS-PRINTER 1-2186577-1 T7112DS-SWARE-PRINTER 1-2186578-1 T7112DS-PRINTHEAD 1-2186579-1 T7112DS-CPU-BOARD 1-2186580-1 T7112DS-MEDIA-OUTER-FLANGE 1-2186581-1 T7112DS- CUTTER 1-2186582-1 T7112DS- PERFORATOR 1-2186583-1"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "native",
+          "value": "1-2186576-1",
+          "normalized": "121865761",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "native",
+          "value": "1-2186576-1",
+          "normalized": "121865761",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "1-2186576-1",
+          "normalized": "121865761",
+          "label": null,
+          "context": "1-2186576-1 | 1-2186576-1 T7112DS-PRINTER | Frozen native_structured part_number field; region unavailable"
+        },
+        {
+          "family": "docling",
+          "value": "1-2186576-1",
+          "normalized": "121865761",
+          "label": "part number",
+          "context": "Part Number | Part Description | 1-2186576-1 | T7112DS-PRINTER | 1-2186577-1 | T7112DS-SWARE-PRINTER | 1-2186578-1 | T7112DS-PRINTHEAD | 1-2186579-1 | T7112DS-CPU-BOARD | 1-2186580-1 | T7112DS-MEDIA-OUTER-FLANGE | 1-2186581-1 | T7112DS- CUTTER | 1-2186582-1 | T7112DS- PERFORATOR | 1-2186583-1 | T7112DS-BLADE-FIXED | 1-2186584-1 | T7112DS-CUTTER-BLADE-MOVE | 1-2186585-1 | T7112DS-PERFORATOR-BLADE-MOVE"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "native",
+          "value": "1-2186576-1"
+        },
+        {
+          "family": "native",
+          "value": "1-2186576-1"
+        }
+      ]
+    },
+    {
+      "filename": "1-2186577-1.pdf",
+      "run_id": "1-2186577-1",
+      "expected_sku": "1-2186577-1",
+      "status": "supported",
+      "supporting_families": [
+        "docling",
+        "evidence_candidates",
+        "native"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "native",
+          "label": "part number",
+          "context": "m cable markers, and identification heat shrink, thermal transfer ribbons, meet MATERIAL relevant TE performance specifications. \u2022 Metal PRODUCT INFORMATION Part Number Part Description 1-2186576-1 T7112DS-PRINTER 1-2186577-1 T7112DS-SWARE-PRINTER 1-2186578-1 T7112DS-PRINTHEAD 1-2186579-1 T7112DS-CPU-BOARD 1-2186580-1 T7112DS-MEDIA-OUTER-FLANGE 1-2186581-1 T7112DS- CUTTER 1-2186582-1 T7112DS- PERFORATOR 1-2186583-1 T7112DS-BLADE-FIXED 1-21865"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "native",
+          "value": "1-2186577-1",
+          "normalized": "121865771",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "1-2186577-1",
+          "normalized": "121865771",
+          "label": null,
+          "context": "1-2186577-1 | 1-2186577-1 T7112DS-SWARE-PRINTER"
+        },
+        {
+          "family": "docling",
+          "value": "1-2186577-1",
+          "normalized": "121865771",
+          "label": "part number",
+          "context": "Part Number | Part Description | 1-2186576-1 | T7112DS-PRINTER | 1-2186577-1 | T7112DS-SWARE-PRINTER | 1-2186578-1 | T7112DS-PRINTHEAD | 1-2186579-1 | T7112DS-CPU-BOARD | 1-2186580-1 | T7112DS-MEDIA-OUTER-FLANGE | 1-2186581-1 | T7112DS- CUTTER | 1-2186582-1 | T7112DS- PERFORATOR | 1-2186583-1 | T7112DS-BLADE-FIXED | 1-2186584-1 | T7112DS-CUTTER-BLADE-MOVE | 1-2186585-1 | T7112DS-PERFORATOR-BLADE-MOVE"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "native",
+          "value": "1-2186577-1"
+        }
+      ]
+    },
+    {
+      "filename": "1-350777-1.pdf",
+      "run_id": "1-350777-1",
+      "expected_sku": "1-350777-1",
+      "status": "insufficient evidence",
+      "supporting_families": [
+        "evidence_candidates"
+      ],
+      "explicit_label_support": [],
+      "matching_hits": [
+        {
+          "family": "evidence_candidates",
+          "value": "1\u20143507/7/7/\u20141",
+          "normalized": "13507771",
+          "label": null,
+          "context": "BROWN 1\u20143507/7/7/\u20141"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "1-480700-0.pdf",
+      "run_id": "1-480700-0",
+      "expected_sku": "1-480700-0",
+      "status": "supported",
+      "supporting_families": [
+        "tesseract"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "tesseract",
+          "label": "part number",
+          "context": "MBERS APPROXIMATLY 3mm HIGH AT WIRE END OF HOUSING (12 POINT DAVID TYPE). 2. CHARACTERS TO BE MOLD ON HOUSING IN A MANNER AS TO BE READ FROM WIRE END ONLY. J ESTE L an a, ) . L x c I \\) 20. 32 \"e 1 ba awe o > J \u2014 21.4340. 38 =| \u2014<t\u2014_\u2014\u2014\u2014\u2014 | 4. ]3 \u2014\u2014\u2014\u2014s REF 6.173 5.97 = SUPERSEDED BY 1-480700-0 NATURAL 2-48 0-160-4 r\u2014 1.62 COLOR PART NUMBER THIS DRAWING 1S A CONTROLLED DOCUMENT. | WN O8MAY 2019 DIMENSTONS: OTHERWISE SPECIFIED: APVD O8MAY 2019 | NAME mm \u20141._BENCHOFE PLUG, 3 CIRCUIT, opLc UNIVERSAL MATE-N-LOCK Of 2 PLC +0.13 - - 3 PLC"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "1-480700-0",
+          "normalized": "14807000",
+          "label": null,
+          "context": "raw text occurrence"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "1-480700-0"
+        }
+      ]
+    },
+    {
+      "filename": "1-794616-2.pdf",
+      "run_id": "1-794616-2",
+      "expected_sku": "1-794616-2",
+      "status": "insufficient evidence",
+      "supporting_families": [
+        "docling",
+        "evidence_candidates",
+        "native"
+      ],
+      "explicit_label_support": [],
+      "matching_hits": [
+        {
+          "family": "native",
+          "value": "1-794616-2",
+          "normalized": "17946162",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "1-794616-2",
+          "normalized": "17946162",
+          "label": null,
+          "context": "1-794616-2"
+        },
+        {
+          "family": "docling",
+          "value": "1-794616-2",
+          "normalized": "17946162",
+          "label": null,
+          "context": "PART | NUMBER | NO. OF | POS. | DIM A | MATERIAL | COLOR | 794616-2 | 2 | 3.85 | BLACK | 794616-4 | 4 | 6.85 | 794616-6 | 6 | 9.85 | 794616-8 | 8 | 12.85 | 1-794616-0 | 10 | 15.85 | 1-794616-2 | 12 | 18.85 | 1-794616-4 | 14 | 21.85 | 1-794616-6 | 16 | 24.85 | 1-794616-8 | 18 | 27.85 | 2-794616-0 | 20 | 30.85 | 2-794616-2 | 22 | 33.85 | 2-794616-4 | 24 | 36.85 | 3-794616-6 | 6 | 9.85 | NATURAL | 3-794616-8 | 8 | 12.85 | 3-794616-0 | 10 | 15.85 | 2 | 3"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "native",
+          "value": "1-794616-2"
+        }
+      ]
+    },
+    {
+      "filename": "10-AT3.pdf",
+      "run_id": "10-at3",
+      "expected_sku": "10-AT3",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "10-E1126TA035M7-L859F73Z.pdf",
+      "run_id": "10-e1126ta035m7-l859f73z",
+      "expected_sku": "10-E1126TA035M7-L859F73Z",
+      "status": "supported",
+      "supporting_families": [
+        "docling",
+        "evidence_candidates",
+        "native",
+        "tesseract",
+        "vision"
+      ],
+      "explicit_label_support": [
+        {
+          "family": "tesseract",
+          "label": "ordering code",
+          "context": "yright Vincotech 10-E1126TAO35M7-L859F73Z datasheet Inverter Switching Definitions FWD | arm 90% Term 100% figure 30. FWD Turn-on Switching Waveforms & definition of tg, (tg = integrating time for Q:) % 15 22 Aug. 2025 / Revision 1 v 10-E1126TA035M7-L859F73Z datasheet Vincotech Ordering Code Version Ordering Code Without thermal paste 10-E1126TA035M7-L859F73Z i 10-E1126TA035M7-L859F73Z-/7/ Marking Name Date code UL & VIN Text NN-NNNNNNNNNNNNNN- WWYY UL VIN THTTTV Type&Ver"
+        },
+        {
+          "family": "tesseract",
+          "label": "ordering code",
+          "context": "igure 30. FWD Turn-on Switching Waveforms & definition of tg, (tg = integrating time for Q:) % 15 22 Aug. 2025 / Revision 1 v 10-E1126TA035M7-L859F73Z datasheet Vincotech Ordering Code Version Ordering Code Without thermal paste 10-E1126TA035M7-L859F73Z i 10-E1126TA035M7-L859F73Z-/7/ Marking Name Date code UL & VIN Text NN-NNNNNNNNNNNNNN- WWYY UL VIN THTTTV Type&Ver Lot number Serial Date code THUTITIVV LLLLL SSSS WWYY Datamatrix Outline Pin table [mm X Y Function 12,8 9,6 DC+ 1"
+        },
+        {
+          "family": "tesseract",
+          "label": "ordering code",
+          "context": "ng Waveforms & definition of tg, (tg = integrating time for Q:) % 15 22 Aug. 2025 / Revision 1 v 10-E1126TA035M7-L859F73Z datasheet Vincotech Ordering Code Version Ordering Code Without thermal paste 10-E1126TA035M7-L859F73Z i 10-E1126TA035M7-L859F73Z-/7/ Marking Name Date code UL & VIN Text NN-NNNNNNNNNNNNNN- WWYY UL VIN THTTTV Type&Ver Lot number Serial Date code THUTITIVV LLLLL SSSS WWYY Datamatrix Outline Pin table [mm X Y Function 12,8 9,6 DC+ 16 9,6 DC+ 22,4 9,6 Therm1 25,6 9,6 Th"
+        },
+        {
+          "family": "native",
+          "label": "ordering code",
+          "context": "witching Waveforms & definition of trr Turn-on Switching Waveforms & definition of tQr (tQr = integrating time for Qr) % % Qr trr tQr fitted IF IF RRM 10% VF RRM 90% RRM 100% t(\u00b5s) t(\u00b5s) Copyright Vincotech 15 22 Aug. 2025 / Revision 1 [Page 16] 10-E1126TA035M7-L859F73Z datasheet Ordering Code Version Ordering Code Without thermal paste 10-E1126TA035M7-L859F73Z With thermal paste (5,2 W/mK, PTM6000HV) 10-E1126TA035M7-L859F73Z-/7/ Marking Name Date code UL & VIN Lot Serial Text NN-NNNNNNN"
+        },
+        {
+          "family": "native",
+          "label": "ordering code",
+          "context": "ting time for Qr) % % Qr trr tQr fitted IF IF RRM 10% VF RRM 90% RRM 100% t(\u00b5s) t(\u00b5s) Copyright Vincotech 15 22 Aug. 2025 / Revision 1 [Page 16] 10-E1126TA035M7-L859F73Z datasheet Ordering Code Version Ordering Code Without thermal paste 10-E1126TA035M7-L859F73Z With thermal paste (5,2 W/mK, PTM6000HV) 10-E1126TA035M7-L859F73Z-/7/ Marking Name Date code UL & VIN Lot Serial Text NN-NNNNNNNNNNNNNN- WWYY UL VIN LLLLL SSSS TTTTTTVV Type&Ver Lot number Serial Date code Datamatrix TTTTTTTV"
+        },
+        {
+          "family": "native",
+          "label": "ordering code",
+          "context": "t(\u00b5s) Copyright Vincotech 15 22 Aug. 2025 / Revision 1 [Page 16] 10-E1126TA035M7-L859F73Z datasheet Ordering Code Version Ordering Code Without thermal paste 10-E1126TA035M7-L859F73Z With thermal paste (5,2 W/mK, PTM6000HV) 10-E1126TA035M7-L859F73Z-/7/ Marking Name Date code UL & VIN Lot Serial Text NN-NNNNNNNNNNNNNN- WWYY UL VIN LLLLL SSSS TTTTTTVV Type&Ver Lot number Serial Date code Datamatrix TTTTTTTVV LLLLL SSSS WWYY Outline Pin table [mm] Pin X Y Function 1 12,8 9,6 DC"
+        }
+      ],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "10-E1126TA035M7-L859F73Z",
+          "normalized": "10e1126ta035m7l859f73z",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "vision",
+          "value": "10-E1126TA035M7-L859F73Z",
+          "normalized": "10e1126ta035m7l859f73z",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "tesseract",
+          "value": "10-E1126TA035M7-L859F73Z",
+          "normalized": "10e1126ta035m7l859f73z",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "native",
+          "value": "10-E1126TA035M7-L859F73Z",
+          "normalized": "10e1126ta035m7l859f73z",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "10-E1126TA035M7-L859F73Z",
+          "normalized": "10e1126ta035m7l859f73z",
+          "label": null,
+          "context": "10-E1126TA035M7-L859F73Z | \u25cf10-E1126TA035M7-L859F73Z | e 10-E1126TA035M7-L859F73Z | Frozen ocr_structured part_number field; region unavailable"
+        },
+        {
+          "family": "docling",
+          "value": "10-E1126TA035M7-L859F73Z",
+          "normalized": "10e1126ta035m7l859f73z",
+          "label": "ordering code",
+          "context": "Ordering Code | Version | Ordering Code | Without thermal paste | 10-E1126TA035M7-L859F73Z | With thermal paste (5,2 W/mK, PTM6000HV) | 10-E1126TA035M7-L859F73Z-/7/"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "10-E1126TA035M7-L859F73Z"
+        },
+        {
+          "family": "vision",
+          "value": "10-E1126TA035M7-L859F73Z"
+        },
+        {
+          "family": "tesseract",
+          "value": "10-E1126TA035M7-L859F73Z"
+        },
+        {
+          "family": "native",
+          "value": "10-E1126TA035M7-L859F73Z"
+        }
+      ]
+    },
+    {
+      "filename": "10-MXL.pdf",
+      "run_id": "10-mxl",
+      "expected_sku": "10-MXL",
+      "status": "insufficient evidence",
+      "supporting_families": [
+        "native"
+      ],
+      "explicit_label_support": [],
+      "matching_hits": [
+        {
+          "family": "native",
+          "value": "10-MXL",
+          "normalized": "10mxl",
+          "label": null,
+          "context": "raw text occurrence"
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "native",
+          "value": "10-MXL"
+        }
+      ]
+    },
+    {
+      "filename": "10-T5.pdf",
+      "run_id": "10-t5",
+      "expected_sku": "10-T5",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "10.02.120.pdf",
+      "run_id": "10-02-120",
+      "expected_sku": "10.02.120",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "100-AT10.pdf",
+      "run_id": "100-at10",
+      "expected_sku": "100-AT10",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "100-AT5.pdf",
+      "run_id": "100-at5",
+      "expected_sku": "100-AT5",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "100-ATN10K6.pdf",
+      "run_id": "100-atn10k6",
+      "expected_sku": "100-ATN10K6",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "100-T10.pdf",
+      "run_id": "100-t10",
+      "expected_sku": "100-T10",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "100-T20.pdf",
+      "run_id": "100-t20",
+      "expected_sku": "100-T20",
+      "status": "insufficient evidence",
+      "supporting_families": [
+        "tesseract"
+      ],
+      "explicit_label_support": [],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "T20",
+          "normalized": "t20",
+          "label": null,
+          "context": ""
+        }
+      ],
+      "contradicting_evidence": [],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "T20"
+        }
+      ]
+    },
+    {
+      "filename": "100818033524001.pdf",
+      "run_id": "100818033524001",
+      "expected_sku": "100818033524001",
+      "status": "contradicted",
+      "supporting_families": [
+        "evidence_candidates",
+        "native",
+        "tesseract",
+        "vision"
+      ],
+      "explicit_label_support": [],
+      "matching_hits": [
+        {
+          "family": "tesseract",
+          "value": "MVSC1-180-3E1-NC-AC110-L-NPT",
+          "normalized": "mvsc11803e1ncac110lnpt",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "vision",
+          "value": "100818033524001",
+          "normalized": "100818033524001",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "native",
+          "value": "MVSC1-180-3E1-NC-AC110-L-NPT",
+          "normalized": "mvsc11803e1ncac110lnpt",
+          "label": null,
+          "context": ""
+        },
+        {
+          "family": "tesseract",
+          "value": "100818033524001",
+          "normalized": "100818033524001",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "native",
+          "value": "100818033524001",
+          "normalized": "100818033524001",
+          "label": null,
+          "context": "raw text occurrence"
+        },
+        {
+          "family": "evidence_candidates",
+          "value": "100818033524001",
+          "normalized": "100818033524001",
+          "label": null,
+          "context": "100818033524001 Cut Sheet | 100818033524001 Cut Sheet VAUTOMATIONDIRECT: | Frozen vision part_number field; region unavailable"
+        }
+      ],
+      "contradicting_evidence": [
+        {
+          "family": "structured",
+          "value": "mvsc11803e1ncac110lnpt",
+          "agreement_count": 2
+        }
+      ],
+      "structured_values": [
+        {
+          "family": "tesseract",
+          "value": "MVSC1-180-3E1-NC-AC110-L-NPT"
+        },
+        {
+          "family": "vision",
+          "value": "100818033524001"
+        },
+        {
+          "family": "native",
+          "value": "MVSC1-180-3E1-NC-AC110-L-NPT"
+        },
+        {
+          "family": "tesseract",
+          "value": "100818033524001"
+        },
+        {
+          "family": "native",
+          "value": "100818033524001"
+        }
+      ]
+    },
+    {
+      "filename": "100_AT3_900_SFX.pdf",
+      "run_id": "100-at3-900-sfx",
+      "expected_sku": "100_AT3_900_SFX",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "100_T5_990_BFX.pdf",
+      "run_id": "100-t5-990-bfx",
+      "expected_sku": "100_T5_990_BFX",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    },
+    {
+      "filename": "101.6-XL.pdf",
+      "run_id": "101-6-xl",
+      "expected_sku": "101.6-XL",
+      "status": "insufficient evidence",
+      "supporting_families": [],
+      "explicit_label_support": [],
+      "matching_hits": [],
+      "contradicting_evidence": [],
+      "structured_values": []
+    }
+  ]
+}

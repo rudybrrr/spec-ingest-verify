@@ -36,7 +36,11 @@ DEFAULT_SCHEMA = json.dumps(
     {
         "name": "spec_sheet",
         "fields": [
-            {"name": "part_number", "description": "Manufacturer part number", "required": True},
+            {"name": "part_number", "description": (
+                "Unique manufacturer/orderable part identifier for the specific product represented by the document. "
+                "Do not use product-family names, document titles, drawing labels, stock labels, or arbitrary variant identifiers. "
+                "Return null for multi-product/portfolio documents or when no single unique part number is clearly identifiable."
+            ), "required": True},
             {"name": "description", "description": "Short product description", "required": False},
         ],
     },
@@ -182,6 +186,28 @@ def main() -> None:
     ):
         column.metric(label, value)
     st.subheader("Batch documents")
+    report_path = Path(batch_root) / "report.json"
+    if report_path.exists():
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        time_metrics = report.get("processing_time_ms", {})
+        cost_metrics = report.get("total_api_cost_usd")
+        st.subheader("Operational metrics")
+        metric_columns = st.columns(5)
+        metric_columns[0].metric("Avg latency", f"{(time_metrics.get('average') or 0) / 1000:.2f}s")
+        metric_columns[1].metric("Median latency", f"{(time_metrics.get('median') or 0) / 1000:.2f}s")
+        metric_columns[2].metric("Total latency", f"{(time_metrics.get('total') or 0) / 1000:.1f}s")
+        metric_columns[3].metric("Total API cost", f"${cost_metrics:.6f}" if cost_metrics is not None else "unknown")
+        metric_columns[4].metric("Escalated fields", sum(item[1] for item in report.get("escalation_fields", [])))
+        st.caption(f"Tokens by stage: {report.get('token_usage_by_stage', {})}")
+        if report.get("failure_taxonomy"):
+            st.caption(f"Failure taxonomy: {report['failure_taxonomy']}")
+    progress_path = Path(batch_root) / "progress.json"
+    if progress_path.exists():
+        progress = json.loads(progress_path.read_text(encoding="utf-8"))
+        page = progress.get("page")
+        total_pages = progress.get("total_pages")
+        page_text = f"page {page}/{total_pages}" if page and total_pages else ""
+        st.caption(f"Progress: file {progress.get('file_index')}/{progress.get('total_files')} · {progress.get('filename')} · {progress.get('stage')} {page_text}")
     st.dataframe(
         [{"PDF": result["filename"], "Status": result["status"], "Error": result.get("error") or ""} for result in batch_results],
         use_container_width=True,

@@ -29,6 +29,18 @@ class RunDirectory:
         return self.root / "ocr.json"
 
     @property
+    def native_text(self) -> Path:
+        return self.root / "native-text.txt"
+
+    @property
+    def native_text_json(self) -> Path:
+        return self.root / "native-text.json"
+
+    @property
+    def native_json(self) -> Path:
+        return self.root / "native.json"
+
+    @property
     def vision_json(self) -> Path:
         return self.root / "vision.json"
 
@@ -39,3 +51,11 @@ class RunDirectory:
     @property
     def final_json(self) -> Path:
         return self.root / "final.json"
+
+    @property
+    def metrics_json(self) -> Path:
+        return self.root / "metrics.json"
+
+    @property
+    def ocr_progress_json(self) -> Path:
+        return self.root / "ocr-progress.json"

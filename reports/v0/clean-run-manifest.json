@@ -1,0 +1,505 @@
+{
+  "input_dir": "<local raw PDF corpus omitted from release>",
+  "documents": {
+    "00118ES1B56C-S.pdf": {
+      "run_id": "00118es1b56c-s",
+      "status": "verified",
+      "error": null
+    },
+    "00118ET3EBM56-S.pdf": {
+      "run_id": "00118et3ebm56-s",
+      "status": "verified",
+      "error": null
+    },
+    "00158ET3EBM145TC-S.pdf": {
+      "run_id": "00158et3ebm145tc-s",
+      "status": "verified",
+      "error": null
+    },
+    "00158ET3EBM56CFL-S.pdf": {
+      "run_id": "00158et3ebm56cfl-s",
+      "status": "verified",
+      "error": null
+    },
+    "00218ET3EBM56CFL-S.pdf": {
+      "run_id": "00218et3ebm56cfl-s",
+      "status": "verified",
+      "error": null
+    },
+    "00518ET3EBM184TC-S.pdf": {
+      "run_id": "00518et3ebm184tc-s",
+      "status": "verified",
+      "error": null
+    },
+    "00518ET3EBMR184TC-S.pdf": {
+      "run_id": "00518et3ebmr184tc-s",
+      "status": "verified",
+      "error": null
+    },
+    "00551106.pdf": {
+      "run_id": "00551106",
+      "status": "verified",
+      "error": null
+    },
+    "00571102.pdf": {
+      "run_id": "00571102",
+      "status": "verified",
+      "error": null
+    },
+    "00591104.pdf": {
+      "run_id": "00591104",
+      "status": "verified",
+      "error": null
+    },
+    "00601102.pdf": {
+      "run_id": "00601102",
+      "status": "failed",
+      "error": "GeminiVisionError: Gemini Vision request failed: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}"
+    },
+    "00681101.pdf": {
+      "run_id": "00681101",
+      "status": "verified",
+      "error": null
+    },
+    "00701101.pdf": {
+      "run_id": "00701101",
+      "status": "verified",
+      "error": null
+    },
+    "00718ET3EBM213TC-S.pdf": {
+      "run_id": "00718et3ebm213tc-s",
+      "status": "verified",
+      "error": null
+    },
+    "00741200.pdf": {
+      "run_id": "00741200",
+      "status": "verified",
+      "error": null
+    },
+    "00751200.pdf": {
+      "run_id": "00751200",
+      "status": "verified",
+      "error": null
+    },
+    "01.02.120.pdf": {
+      "run_id": "01-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "01018ET3EBM215TC-S.pdf": {
+      "run_id": "01018et3ebm215tc-s",
+      "status": "verified",
+      "error": null
+    },
+    "01018ET3EBMR215TC-S.pdf": {
+      "run_id": "01018et3ebmr215tc-s",
+      "status": "verified",
+      "error": null
+    },
+    "01518ET3EBM254T-S.pdf": {
+      "run_id": "01518et3ebm254t-s",
+      "status": "verified",
+      "error": null
+    },
+    "01651.0-00.pdf": {
+      "run_id": "01651-0-00",
+      "status": "verified",
+      "error": null
+    },
+    "01662.0-00.pdf": {
+      "run_id": "01662-0-00",
+      "status": "verified",
+      "error": null
+    },
+    "018600-02.pdf": {
+      "run_id": "018600-02",
+      "status": "verified",
+      "error": null
+    },
+    "018600-04.pdf": {
+      "run_id": "018600-04",
+      "status": "verified",
+      "error": null
+    },
+    "018610-00.pdf": {
+      "run_id": "018610-00",
+      "status": "verified",
+      "error": null
+    },
+    "018610-02.pdf": {
+      "run_id": "018610-02",
+      "status": "verified",
+      "error": null
+    },
+    "018700-30.pdf": {
+      "run_id": "018700-30",
+      "status": "verified",
+      "error": null
+    },
+    "018701-30.pdf": {
+      "run_id": "018701-30",
+      "status": "verified",
+      "error": null
+    },
+    "018702-30.pdf": {
+      "run_id": "018702-30",
+      "status": "verified",
+      "error": null
+    },
+    "018703-30.pdf": {
+      "run_id": "018703-30",
+      "status": "verified",
+      "error": null
+    },
+    "018709-30.pdf": {
+      "run_id": "018709-30",
+      "status": "verified",
+      "error": null
+    },
+    "018710-30.pdf": {
+      "run_id": "018710-30",
+      "status": "verified",
+      "error": null
+    },
+    "018712-30.pdf": {
+      "run_id": "018712-30",
+      "status": "verified",
+      "error": null
+    },
+    "018719-30.pdf": {
+      "run_id": "018719-30",
+      "status": "verified",
+      "error": null
+    },
+    "018720-30.pdf": {
+      "run_id": "018720-30",
+      "status": "verified",
+      "error": null
+    },
+    "018722-30.pdf": {
+      "run_id": "018722-30",
+      "status": "verified",
+      "error": null
+    },
+    "018729-30.pdf": {
+      "run_id": "018729-30",
+      "status": "verified",
+      "error": null
+    },
+    "018730-30.pdf": {
+      "run_id": "018730-30",
+      "status": "verified",
+      "error": null
+    },
+    "018740-30.pdf": {
+      "run_id": "018740-30",
+      "status": "verified",
+      "error": null
+    },
+    "018740-31.pdf": {
+      "run_id": "018740-31",
+      "status": "verified",
+      "error": null
+    },
+    "018749-30.pdf": {
+      "run_id": "018749-30",
+      "status": "verified",
+      "error": null
+    },
+    "018749-31.pdf": {
+      "run_id": "018749-31",
+      "status": "verified",
+      "error": null
+    },
+    "018800-00.pdf": {
+      "run_id": "018800-00",
+      "status": "verified",
+      "error": null
+    },
+    "018800-40.pdf": {
+      "run_id": "018800-40",
+      "status": "verified",
+      "error": null
+    },
+    "018802-00.pdf": {
+      "run_id": "018802-00",
+      "status": "verified",
+      "error": null
+    },
+    "018803-00.pdf": {
+      "run_id": "018803-00",
+      "status": "verified",
+      "error": null
+    },
+    "02.02.120.pdf": {
+      "run_id": "02-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "02018ET3EBM256T-S.pdf": {
+      "run_id": "02018et3ebm256t-s",
+      "status": "verified",
+      "error": null
+    },
+    "020310-00.pdf": {
+      "run_id": "020310-00",
+      "status": "verified",
+      "error": null
+    },
+    "020319-00.pdf": {
+      "run_id": "020319-00",
+      "status": "verified",
+      "error": null
+    },
+    "020320-00.pdf": {
+      "run_id": "020320-00",
+      "status": "verified",
+      "error": null
+    },
+    "020349-00.pdf": {
+      "run_id": "020349-00",
+      "status": "verified",
+      "error": null
+    },
+    "03.02.120.pdf": {
+      "run_id": "03-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "030599-00.pdf": {
+      "run_id": "030599-00",
+      "status": "verified",
+      "error": null
+    },
+    "030921-16.pdf": {
+      "run_id": "030921-16",
+      "status": "verified",
+      "error": null
+    },
+    "030921-17.pdf": {
+      "run_id": "030921-17",
+      "status": "verified",
+      "error": null
+    },
+    "030973-16.pdf": {
+      "run_id": "030973-16",
+      "status": "verified",
+      "error": null
+    },
+    "04A-B01.pdf": {
+      "run_id": "04a-b01",
+      "status": "human_review",
+      "error": null
+    },
+    "04J-AP-T01.pdf": {
+      "run_id": "04j-ap-t01",
+      "status": "verified",
+      "error": null
+    },
+    "04J-AS-T01.pdf": {
+      "run_id": "04j-as-t01",
+      "status": "verified",
+      "error": null
+    },
+    "05.02.120.pdf": {
+      "run_id": "05-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "05.02.80A-05.01.71A.pdf": {
+      "run_id": "05-02-80a-05-01-71a",
+      "status": "human_review",
+      "error": null
+    },
+    "05.02.81A-05.01.72A.pdf": {
+      "run_id": "05-02-81a-05-01-72a",
+      "status": "human_review",
+      "error": null
+    },
+    "06.02.120.pdf": {
+      "run_id": "06-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "06510.0-00.pdf": {
+      "run_id": "06510-0-00",
+      "status": "verified",
+      "error": null
+    },
+    "06513.0-00.pdf": {
+      "run_id": "06513-0-00",
+      "status": "verified",
+      "error": null
+    },
+    "06514.0-00.pdf": {
+      "run_id": "06514-0-00",
+      "status": "verified",
+      "error": null
+    },
+    "06520.0-00.pdf": {
+      "run_id": "06520-0-00",
+      "status": "verified",
+      "error": null
+    },
+    "06524.0-00.pdf": {
+      "run_id": "06524-0-00",
+      "status": "verified",
+      "error": null
+    },
+    "07.02.120.pdf": {
+      "run_id": "07-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "08.02.120.pdf": {
+      "run_id": "08-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "09.02.120.pdf": {
+      "run_id": "09-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "1-1414631-0.pdf": {
+      "run_id": "1-1414631-0",
+      "status": "verified",
+      "error": null
+    },
+    "1-1437713-1.pdf": {
+      "run_id": "1-1437713-1",
+      "status": "verified",
+      "error": null
+    },
+    "1-1437713-2.pdf": {
+      "run_id": "1-1437713-2",
+      "status": "verified",
+      "error": null
+    },
+    "1-2186527-1.pdf": {
+      "run_id": "1-2186527-1",
+      "status": "verified",
+      "error": null
+    },
+    "1-2186528-1.pdf": {
+      "run_id": "1-2186528-1",
+      "status": "verified",
+      "error": null
+    },
+    "1-2186576-1.pdf": {
+      "run_id": "1-2186576-1",
+      "status": "verified",
+      "error": null
+    },
+    "1-2186577-1.pdf": {
+      "run_id": "1-2186577-1",
+      "status": "verified",
+      "error": null
+    },
+    "1-350777-1.pdf": {
+      "run_id": "1-350777-1",
+      "status": "verified",
+      "error": null
+    },
+    "1-480700-0.pdf": {
+      "run_id": "1-480700-0",
+      "status": "verified",
+      "error": null
+    },
+    "1-794616-2.pdf": {
+      "run_id": "1-794616-2",
+      "status": "failed",
+      "error": "GeminiExtractionError: Gemini request failed: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}"
+    },
+    "10-AT3.pdf": {
+      "run_id": "10-at3",
+      "status": "failed",
+      "error": "GeminiVisionError: Gemini Vision request failed: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}"
+    },
+    "10-E1126TA035M7-L859F73Z.pdf": {
+      "run_id": "10-e1126ta035m7-l859f73z",
+      "status": "verified",
+      "error": null
+    },
+    "10-EZ126PA050M702-L850F76T.pdf": {
+      "run_id": "10-ez126pa050m702-l850f76t",
+      "status": "verified",
+      "error": null
+    },
+    "10-MXL.pdf": {
+      "run_id": "10-mxl",
+      "status": "human_review",
+      "error": null
+    },
+    "10-T5.pdf": {
+      "run_id": "10-t5",
+      "status": "human_review",
+      "error": null
+    },
+    "10.02.120.pdf": {
+      "run_id": "10-02-120",
+      "status": "human_review",
+      "error": null
+    },
+    "100-AT10.pdf": {
+      "run_id": "100-at10",
+      "status": "human_review",
+      "error": null
+    },
+    "100-AT5.pdf": {
+      "run_id": "100-at5",
+      "status": "human_review",
+      "error": null
+    },
+    "100-ATN10K6.pdf": {
+      "run_id": "100-atn10k6",
+      "status": "failed",
+      "error": "GeminiVisionError: Gemini Vision request failed: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}"
+    },
+    "100-T10.pdf": {
+      "run_id": "100-t10",
+      "status": "human_review",
+      "error": null
+    },
+    "100-T20.pdf": {
+      "run_id": "100-t20",
+      "status": "human_review",
+      "error": null
+    },
+    "100818033524001.pdf": {
+      "run_id": "100818033524001",
+      "status": "verified",
+      "error": null
+    },
+    "100_AT3_900_SFX.pdf": {
+      "run_id": "100-at3-900-sfx",
+      "status": "human_review",
+      "error": null
+    },
+    "100_T5_990_BFX.pdf": {
+      "run_id": "100-t5-990-bfx",
+      "status": "human_review",
+      "error": null
+    },
+    "101.6-XL.pdf": {
+      "run_id": "101-6-xl",
+      "status": "human_review",
+      "error": null
+    },
+    "101DOR010-S10.pdf": {
+      "run_id": "101dor010-s10",
+      "status": "verified",
+      "error": null
+    },
+    "101DOR016-S10.pdf": {
+      "run_id": "101dor016-s10",
+      "status": "verified",
+      "error": null
+    },
+    "101DOR025-S10.pdf": {
+      "run_id": "101dor025-s10",
+      "status": "verified",
+      "error": null
+    }
+  }
+}
